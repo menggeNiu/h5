@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>0302菜品详情</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */ /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;}
+		body {background: rgb(230,229,221);font-family: arial;}
+		/*body::-webkit-scrollbar{width: 0;}*/
+		/*body::scrollbar{width: 0;}*/
+		.head {width:7.5rem;height: .9rem;background-image: url(../imgs/031headbg.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;top: 0;left: 0;}
+		.to03 {display: block;position: absolute;top: .27rem;left: .3rem;background-image: url(../imgs/to03.png);background-size: 100% 100%;background-repeat: no-repeat;width: .21rem;height: .39rem;}
+		.kezuo {width: 1.35rem;height: .31rem;display: block;position: absolute;top: .3rem;left: 3.09rem;color: white;font-size: .33rem;line-height: .31rem;}
+		.inner a:nth-child(3){width: .39rem;height: .39rem;position: absolute;bottom: .22rem;right: .3rem;background-image: url(../imgs/fang.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.headmark {width:7.5rem;height: .83rem;margin-bottom: .2rem;}
+		.inner {width: 2.37rem;height: .56rem;margin:.15rem auto 0;}
+		.inner a {display: block;float: left;width: 50%;height: 100%;line-height: .56rem;text-align: center;color: rgb(134,117,88);font-size: .2rem;}
+		.quanzi{background-image: url(../imgs/quanzi.png);background-size: 200% 100%;background-repeat: no-repeat;background-position: 0 0;}
+		.shipin {background-image: url(../imgs/shipin.png);background-size: 200% 100%;background-repeat: no-repeat;background-position: 100% 0;}
+		.left {width: 100%;padding-bottom: .95rem;background: rgb(230,229,221)}
+		.content {width: 100%;margin-bottom: .2rem;background:white;}
+		.up {display:block;width: 100%;height: 3.6rem;box-sizing: border-box;padding-top: .18rem;padding-left: .3rem;padding-right: .3rem;}
+		.content:nth-child(1) .up{background-image: url(../imgs/upbg1.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.content:nth-child(2) .up{background-image: url(../imgs/upbg2.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.ueser{height: .61rem;}
+		.content:nth-child(3) .up{background-image: url(../imgs/upbg1.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.content:nth-child(4) .up{background-image: url(../imgs/upbg2.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.ueser{height: .61rem;}
+		.touxinag {width: .6rem;height: .61rem;float: left;}
+		.touxinag img {width: 100%;height: 100%;float: left;}
+		.jieshao {margin-left: .11rem;height: .61rem;float: left;}
+		.name span {color:rgb(226,224,223);font-size: .23rem;display: block;margin-top: .06rem;height: .23rem;}
+		.timebox {height: .23rem;}
+		.timebox span {color: rgb(236,234,221);font-size: .23rem;float:left;display: inline-block;height: .23rem;margin-top:.12rem;}
+		.shoucang {float: right;width: .66rem;height: .4rem;border: .02rem white solid;font-size: .2rem;text-align: center;line-height: .4rem;color: white;border-radius: 0.06rem;cursor: pointer;}
+		.shoucang1 {background: rgba(236,234,221,.5);color: rgba(0,0,0,.3);}
+		.center {width: 100%;height: .98rem;border-bottom: 0.01rem solid rgb(209,209,209);box-sizing: border-box;padding-left: .31rem;}
+		.center h1 {font-size: .26rem;margin-top: .18rem;color: rgb(31,31,31);}
+		.center p {font-size: .24rem;margin-top: .15rem;color: rgb(135,135,135);}
+		.down {width: 100%;height: .86rem;box-sizing: border-box;padding: .23rem .3rem .23rem .3rem;}
+		.zan {float: left;width: .38rem;height: .35rem;background-image: url(../imgs/zanzan.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.conmend {float: left;width: .38rem;height: .38rem;background-image: url(../imgs/conmend.png);background-size: 100% 100%;background-repeat: no-repeat;margin-left: .5rem;}
+		.more {float: right;width: .39rem;height: .39rem;background-image: url(../imgs/moremore.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.footer {position: fixed;bottom: 0;width: 100%;height:.97rem;background-image: url(../imgs/foot.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.footbox {width: 20%;height: 100%;float: left;position: relative;}
+		.footbox a {display: block;position: absolute;}
+		.footpic1 {width: .4rem;height: .65rem;top: .18rem;left: .55rem;background: url(../imgs/homepage.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0%;}
+		.footpic2 {width: .42rem;height: .64rem;top: .19rem;left: .55rem;background: url(../imgs/shangcheng.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic3 {width: .48rem;height: .64rem;top: .19rem;left: .52rem;background: url(../imgs/xuan.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic4 {width: .5rem;height: .64rem;top: .19rem;left: .51rem;background: url(../imgs/find.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 102%;}
+		.footpic5 {width: .38rem;height: .65rem;top: .19rem;left: .56rem;background: url(../imgs/mine.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.right {width: 100%;padding-bottom: 1rem;display: none;}
+		.video {width: 100%;height: 4.44rem;box-sizing: border-box;padding-top: .2rem;padding-left: .31rem;padding-right: .31rem;font-size: 0;position: relative;}
+		.pic{width: 100%;height: 4.18rem;position: absolute;top: 0;left: 0;}
+		.pic img{width: 100%;height: 100%;}
+		.up1{position: absolute;left: 50%;top: 1.39rem;font-size: .3rem;color: rgb(252,251,250);transform: translateX(-50%);}
+		.up2{position: absolute;left: 50%;bottom: 2.07rem;font-size: .24rem;color: rgb(200,195,195);transform: translateX(-50%);}
+		.shipins{position: absolute;right: 1.39rem;top:3.75rem;font-size: .22rem;color: #727272;}
+	</style>
+</head>
+<body>
+	<div class="head">
+		<div class="inner">
+			<a href="javascript:void(0);" class="quanzi">圈子</a>
+			<a href="javascript:void(0);" class="shipin">视频</a>
+			<a href="搜索页.html" class="search"></a>
+		</div>
+	</div>
+	<div class="headmark"></div>
+	<div class="left contents">
+		<div class="content">
+			<a href="#" class="up">
+				<div class="ueser">
+					<div class="touxinag"><img src="../imgs/tou1.png" alt=""></div>
+					<div class="jieshao">
+						<div class="name"><span>长颈鹿妹妹</span></div>
+						<div class="timebox">
+							<span class="time">d</span>
+							<span class="time">d</span>
+							<span class="time">d</span>
+							<span class="time"></span>
+						</div>
+					</div>
+					<span class="shoucang">收藏</span>
+				</div>
+			</a>
+			<div class="center">
+				<h1>水果拼盘</h1>
+				<p>深夜做好的水果拼盘，第一次做，多多指教</p>
+			</div>
+			<div class="down">
+				<a href="#" class="zan"></a>
+				<a href="#" class="conmend"></a>
+				<a href="#" class="more"></a>
+			</div>
+		</div>
+		<div class="content">
+			<a href="#" class="up">
+				<img src="" alt="" class="upbg">
+				<div class="ueser">
+					<div class="touxinag"><img src="../imgs/touxiang2.png" alt=""></div>
+					<div class="jieshao">
+						<div class="name"><span>小黑与小黄</span></div>
+						<div class="timebox">
+							<span class="time">d</span>
+							<span class="time">d</span>
+							<span class="time">d</span>
+							<span class="time"></span>
+						</div>
+					</div>
+					<span class="shoucang">收藏</span>
+				</div>
+			</a>
+			<div class="center">
+				<h1>番茄意面</h1>
+				<p>一直做给自己吃，今天分享出来，不太明白的私信我</p>
+			</div>
+			<div class="down">
+				<a href="#" class="zan"></a>
+				<a href="#" class="conmend"></a>
+				<a href="#" class="more"></a>
+			</div>
+		</div>
+		<div class="content">
+			<a href="#" class="up">
+				<img src="" alt="" class="upbg">
+				<div class="ueser">
+					<div class="touxinag"><img src="../imgs/touxiang2.png" alt=""></div>
+					<div class="jieshao">
+						<div class="name"><span>小黑与小黄</span></div>
+						<div class="timebox">
+							<span class="time">d</span>
+							<span class="time">d</span>
+							<span class="time">d</span>
+							<span class="time"></span>
+						</div>
+					</div>
+					<span class="shoucang">收藏</span>
+				</div>
+			</a>
+			<div class="center">
+				<h1>番茄意面</h1>
+				<p>一直做给自己吃，今天分享出来，不太明白的私信我</p>
+			</div>
+			<div class="down">
+				<a href="#" class="zan"></a>
+				<a href="#" class="conmend"></a>
+				<a href="#" class="more"></a>
+			</div>
+		</div>
+		<div class="content">
+			<a href="#" class="up">
+				<img src="" alt="" class="upbg">
+				<div class="ueser">
+					<div class="touxinag"><img src="../imgs/touxiang2.png" alt=""></div>
+					<div class="jieshao">
+						<div class="name"><span>小黑与小黄</span></div>
+						<div class="timebox">
+							<span class="time">d</span>
+							<span class="time">d</span>
+							<span class="time">d</span>
+							<span class="time"></span>
+						</div>
+					</div>
+					<span class="shoucang">收藏</span>
+				</div>
+			</a>
+			<div class="center">
+				<h1>番茄意面</h1>
+				<p>一直做给自己吃，今天分享出来，不太明白的私信我</p>
+			</div>
+			<div class="down">
+				<a href="#" class="zan"></a>
+				<a href="#" class="conmend"></a>
+				<a href="#" class="more"></a>
+			</div>
+		</div>
+	</div>
+	<div class="right contents">
+		<div class="video">
+			<div class="pic"><img src="../imgs/vedio1.png" alt=""></div>
+			<span class="up1">豆芽健康素养生界的“四大天王”</span>
+			<span class="up2">身体“减肥”正当时</span>
+			<span class="shipins">(视频)</span>
+		</div>
+		<div class="video">
+			<div class="pic"><img src="../imgs/video2.png" alt=""></div>
+			<span class="up1">脆皮曲奇 零食早餐都OK</span>
+			<span class="up2">水果与粗粮的完美组合</span>
+			<span class="shipins">(视频)</span>
+		</div>
+		<div class="video">
+			<div class="pic"><img src="../imgs/vedio3.png" alt=""></div>
+			<span class="up1">咖啡慕斯蛋糕  甜品的诱惑</span>
+			<span class="up2">水果与粗粮的完美组合</span>
+			<span class="shipins">(视频)</span>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/01%E4%B8%BB%E9%A1%B5.html#" class="footpic footpic1"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/02%E8%8F%9C%E5%93%81.html#" class="footpic footpic2"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/03%E9%80%89%E8%8F%9C.html" class="footpic footpic3"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/04find.html" class="footpic footpic4"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/05%E4%B8%AA%E4%BA%BA%E7%99%BB%E9%99%86%E4%B8%AD%E5%BF%83.html" class="footpic footpic5"><img src="" alt=""></a>
+		</div>
+	</div>
+
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;t||(t=540),n>t&&(n=t);var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"}
+		var o,i,d,s=document,a=window,l=s.documentElement;
+		n(),
+		a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+		a.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(o),o=setTimeout(n,300))},!1),"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){s.body.style.fontSize="100px"},!1)}(750,1296);
+$('.inner a').click(function(){
+	var index = $(this).index($('.inner a'));
+	$('.inner a').css({
+		backgroundPosition:'100% 0'
+	})
+	$('.contents').hide();
+	$(this).css({
+		backgroundPosition:'0 0'
+	})
+	$('.contents').eq(index).show();
+})
+//收藏点击时候颜色的变化
+$('.shoucang').click(function(){
+	$(this).toggleClass('shoucang1');
+})
+// foot变化
+$('.footpic').click(function(){
+	$('.footpic').css({
+		backgroundPosition:'0 -1%',
+	})
+	$(this).css({
+		backgroundPosition:'0 100%',
+	})
+})
+
+</script>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>确认订单</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */  /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;
+		}
+		body {width: 100%;font-family: arial;background: rgb(240,241,244);}
+		.head {width:100%;height: .9rem;background-image: url(../imgs/031headbg.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;top: 0;left: 0;font-size: 0;z-index: 100;}
+		.to03 {display: block;position: absolute;top: .27rem;left: .3rem;background-image: url(../imgs/to03.png);background-size: 100% 100%;background-repeat: no-repeat;width: .21rem;height: .39rem;}
+		.kezuo {height: .9rem;display: block;color: white;font-size: .33rem;line-height: .9rem;text-align: center;}
+		.bianji {display: block;position: absolute;height: .9rem;font-size: .24rem;color: white;top: .33rem;right: .31rem;}
+		.headmark {width:7.5rem;height: .86rem;}
+		.contain{width: 100%;overflow: hidden;}
+		.message{width: 100%;background-image: url(../imgs/orderbg.png);background-size: 100% 100%;background-repeat: no-repeat;padding-top: 1.15rem;padding-left: .73rem;font-size: 0;padding-bottom: .6rem;position: relative;}
+		.up span{font-size: .32rem;color: black;}
+		.up span:nth-child(1){margin-right: .56rem;}
+		.down{margin-top: .35rem;max-width: 6rem;line-height: .3rem;}
+		.down span{font-size: .22rem;color: rgb(38,38,38);}
+		.toright{position: absolute;top: 50%;transform: translateY(-50%);width: .16rem;height: .32rem;background-image: url(../imgs/toright.png);background-size: 100% 100%;background-repeat: no-repeat;left: 7.03rem;z-index: 200;}
+		.swiper-container{overflow: hidden;background: white;font-size: 0;height: 2.28rem;box-sizing: border-box;padding-top: .06rem;padding-left: .3rem;border-bottom: 1px solid #e5e5e5;padding-bottom: .13rem;}
+		.pic{width: 100%;height: 1.69rem;}
+		.swiper-slide{font-size: 0;}
+		.swiper-slide img{width: 100%;height: 100%;}
+		.total {position: absolute;font-size: .24rem;color: black;z-index: 100;height: 100%;top: 0;line-height: 2.28rem;width: 2rem;text-align: center;background: white;right: 0;}
+		.peisong{width: 100%;height: 1.74rem;box-sizing: border-box;border-bottom: 1px solid #e5e5e5;background: white;padding-top: .27rem;padding-left: .31rem;padding-right: .74rem;position: relative;font-size: 0;}
+		.peisong span{font-size: .24rem;color: black;}
+		.peisong span:nth-child(1){float: left;}
+		.peisong span:nth-child(2){float: right;margin-top: .02rem;margin-bottom: .16rem;}
+		.peisong span:nth-child(3){float: right;clear: both;margin-bottom: .16rem;}
+		.peisong span:nth-child(4){float: right;clear: both;padding-left: .43rem;background-image: url(../imgs/date.png);background-size: .25rem .25rem;background-repeat: no-repeat;background-position: 0 0;}
+		.fapiao{width: 100%;position: relative;height: .8rem;border-bottom: 1px solid #e5e5e5;background: white;font-size: 0;margin-bottom: .3rem;}
+		.fapiao span:nth-child(1){position: absolute;top: 50%;transform: translateY(-50%);left: .31rem;font-size: .24rem;}
+		.fapiao span:nth-child(2){position: absolute;absolute;top: 50%;transform: translateY(-50%);font-size: .24rem;left: 4.89rem;color: rgb(135,135,135);}
+		.box{width: 100%;height: .8rem;box-sizing: border-box;font-size: 0;position: relative;background: white;border-bottom: 1px solid #e5e5e5;}
+		.box span:nth-child(1){position: absolute;top: 50%;transform: translateY(-50%);font-size: .24rem;left: .3rem;}
+		.box span:nth-child(2){position: absolute;top: 50%;transform: translateY(-50%);font-size: .22rem;color: rgb(135,135,135);left: 6.13rem;}
+		.box1 span:nth-child(2){color: #ff0000;}
+
+
+
+		.foot{position: fixed;left: 0;bottom: 0;}
+		.foot a{display: block;position: absolute;right: 0;top: 0;width: 2rem;height: .95rem;line-height: .95rem;font-size: .34rem;color: white;background: rgb(241,71,45);text-align: center;}
+		.foot span {font-size: .18rem;}
+
+	</style>
+</head>
+<body>
+	<div class="head">
+		<a href="javacript:void(0);" class="to03"></a>
+		<span class="kezuo">确认订单</span>
+	</div>
+	<div class="headmark"></div>
+	<div class="contain">
+		<div class="message">
+			<div class="up">
+				<span class="name">罗小新</span>
+				<span class="num">15812328727</span>
+			</div>
+			<div class="down">
+				<span>北京 大兴区 亦庄经济开发区 BDA国际广场kZUO座</span>
+			</div>
+			<a href="javascript:void(0);" class="toright"></a>
+		</div>
+		<div class="swiper-container">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<img src="../imgs/order1.png" alt="" money='21.80' class="bill">
+				</div>
+				<div class="swiper-slide">
+					<img src="../imgs/order2.png" alt="" money='5.00' class="bill">
+				</div>
+				<div class="swiper-slide">
+					<img src="../imgs/order3.png" alt="" money='6.90' class="bill">
+				</div>
+			</div>
+			<div class="total">共3件</div>
+			<a href="javascript:void(0);" class="toright"></a>
+		</div>
+		<div class="peisong">
+			<span>支付配送</span>
+			<span>支付方式</span>
+			<span>快递方式</span>
+			<span>工作日、双休日与假日均可送货</span>
+			<a href="javascript:void(0);" class="toright"></a>
+		</div>
+		<div class="fapiao">
+			<span>发票信息</span>
+			<span>明细（纸质）-个人</span>
+			<a href="javascript:void(0);" class="toright"></a>
+		</div>
+		<div class="box">
+			<span>优惠券</span>
+			<span>无可用</span>
+			<a href="javascript:void(0);" class="toright"></a>
+		</div>
+		<div class="box">
+			<span>积分兑换</span>
+			<span>无可用</span>
+			<a href="javascript:void(0);" class="toright"></a>
+		</div>
+		<div class="box box1">
+			<span>商品金额</span>
+			<span class="result"></span>
+			<a href="javascript:void(0);" class="toright"></a>
+		</div>
+		<div class="box box1">
+			<span>运费</span>
+			<span>￥0.00</span>
+			<a href="javascript:void(0);" class="toright"></a>
+		</div>
+	</div>
+	
+	<div class="foot">
+		<div class="sum">
+			
+		</div>
+		<a href="javascript:void(0);">立即下单</a>
+	</div>
+</body>
+
+<script src="../jq/jquery.min.js"></script>
+<script src='../js/swiper.min.js'></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;
+		t||(t=540),n>t&&(n=t);
+		var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"
+	}
+	var o,i,d,s=document,a=window,l=s.documentElement;
+	n(),
+	a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+	a.addEventListener("pageshow",function(e){
+		e.persisted&&(clearTimeout(o),o=setTimeout(n,300))
+	},!1),
+	"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){
+		s.body.style.fontSize="100px"
+	},!1)
+}(750,1296);
+var myswiper = new Swiper('.swiper-container',{
+	resistanceRatio: 0,
+	slidesPerView:4.5,
+	spaceBetween:10,
+
+})
+// 
+$('.to03').click(function(){
+	history.back();
+})
+// 手机号变成*号
+var str = $('.num').text();
+var j = str.substring(3,7);
+$('.num').text(str.replace(j,'****'));
+// 
+$('.total').text('共'+$('.swiper-slide').length+"件");
+// 商品总额
+var s=0;
+$('.bill').each(function(){
+	s+= parseFloat($(this).attr('money'));
+})
+$('.result').text('￥'+s)
+</script>
+</html>

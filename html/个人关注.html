@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>搜索</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */  /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;}
+		body {width: 100%;font-family: arial;}
+		.up {width: 100%;background: rgb(230,229,221);height:5.28rem;padding-bottom: .11rem; overflow: hidden;}
+		.inner{width: 100%;height:5.28rem;background-image: url(../imgs/gerenbg.png);background-size: 100% 100%;background-repeat: no-repeat;font-size: 0;.36rem;}
+		.back{position: absolute;width: .2rem;height: .37rem;background-image: url(../imgs/back.png);background-size: 100% 100%;background-repeat: no-repeat;top: .2rem;left: .31rem;}
+		.guanzhu {position: absolute;box-sizing: border-box;height: .5rem;width: 1.26rem;border:.03rem solid #5bc662;border-radius: .5rem;font-size: .24rem;line-height: .5rem;text-align: center;top: .23rem;right: .31rem;color: #5bc662;background: transparent;}
+		.guanzhus{color: #c5c4c4;border-color: #c5c4c4;}
+		.touxiang{position: absolute;height: 1.66rem;width: 1.66rem;border: .07rem solid #c3ad88;border-radius: 50%;top: .69rem;left: 2.82rem;background: transparent;}	
+		.touxiang i{position: absolute;width: 1.54rem;height: 1.54rem;border-radius: 50%;left: 50%;top: 50%;transform: translate(-50%,-50%);background-image: url(../imgs/gerenup.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.name {position: absolute;font-size: .36rem;left: 50%;transform: translateX(-50%);color: white;top: 2.95rem;}
+		.fanbox {position: absolute;width: 6.12rem;left: 50%;transform: translateX(-50%);font-size: 0;border-top: 1px solid #c5c4c4;top: 3.81rem;font-size: 0;}
+		.box {float: left;width: 50%;text-align: center;height: 1.45rem;line-height: 1.45rem;}
+		.box:nth-child(1):after{content: '';width: 1px;height: .6rem;background: #c5c4c4;top: .37rem;position: absolute;left: 3.02rem;}
+		.front{font-size: .22rem;color: #fff;margin-right: .26rem;}
+		.num{font-size: .18rem;}
+		.box:nth-child(1) .num{color: #71f704;}
+		.box:nth-child(2) .num{color: #ff4e00;}
+		.down{width: 100%;box-sizing: border-box;font-size: 0;}
+		.mine{width: 100%;height: .61rem;border-bottom: 1px solid #c5c4c4;line-height: .68rem;font-size: .24rem;color: black;padding-left: .3rem;}
+		.mine span:nth-child(1){margin-right: .28rem;}
+		.each{height: 1.6rem;border-bottom: 1px solid #c5c4c4;width: 100%;padding-left: .3rem;padding-top: .2rem;font-size: 0;position: relative;}
+		.pic{width: 1.42rem;height: 1.4rem;}
+		.pic img{width: 100%;height: 100%;}
+		.introduce{position: absolute;left: 1.94rem;top: .2rem;}
+		.billname{font-size: .24rem;color: black;margin-bottom: 0.3em;display: block;}
+		.jieshao {font-size: .2rem;color: rgb(136,136,136);display: block;}
+		.dashang{position: absolute;left: 0;top: 1.19rem;}
+		.dashang span{font-size: .2rem;line-height: .2rem;}
+		.write {position: absolute;padding-left: .32rem;font-size: .2rem;top: 1.19rem;left: 1.3rem;background-image: url(../imgs/conmendd.png);background-size: .21rem .2rem;background-position: 0 0;background-repeat: no-repeat;line-height: .2rem;cursor: pointer;}
+		.share{position: absolute;font-size: .2rem;color: black;top: 1.15rem;left: 4.19rem;padding-left: .34rem;width: .74rem;height: .21rem;background-image: url(../imgs/fenxiang.png);background-size: .23rem .21rem;background-position: 0 0;background-repeat: no-repeat;}
+		.time{position: absolute;left: 3.85rem;top: 0;font-size: .2rem;}
+		.toright{position: absolute;background-image: url(../imgs/toright1.png);background-size: 100% 100%;background-repeat: no-repeat;width: .13rem;height: .23rem;top: 50%;transform: translateY(-50%);left: 6.93rem;}
+		
+	</style>
+</head>
+<body>
+	<div class="up">
+		<div class="inner">
+			<i class="back"></i>
+			<a href="javascript:void(0);" class="guanzhu">+ 关注</a>
+			<div class="touxiang"><i></i></div>
+			<span class="name">你咋不上天呢</span>
+			<div class="fanbox">
+				<div class="box">
+					<span class="front">关注</span>
+					<span class="num">6</span>
+				</div>
+				<div class="box">
+					<span class="front">粉丝</span>
+					<span class="num">17</span>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="down">
+			<div class="mine"><span>我的动态</span><span class="total">153</span></div>
+			<div class="each">
+				<div class="pic"><img src="../imgs/pic1.png" alt=""></div>
+				<div class="introduce">
+					<span class="billname">劲脆盐酥鸡</span>
+					<span class="jieshao">明媚的眼光，慵懒懒的中午，炸上几块鲜香...</span>
+					<div class="dashang"><span>12</span><span>人打赏</span></div>
+					<div class="write">写评论</div>
+					<a href="javascript:void(0);" class="share">分享</a>
+					<div class="time"><span class="year">2016</span>-<span class="month">3</span>-<span class="day">23</span></div>
+				</div>
+				<a href="javascript:void(0);" class="toright"></a>
+			</div>
+			<div class="each">
+				<div class="pic"><img src="../imgs/pic2.png" alt=""></div>
+				<div class="introduce">
+					<span class="billname">麻麻的红烧肉</span>
+					<span class="jieshao">最好吃不过麻麻亲手做的红烧肉~这次我也...</span>
+					<div class="dashang"><span>22</span><span>人打赏</span></div>
+					<div class="write">写评论</div>
+					<a href="javascript:void(0);" class="share">分享</a>
+					<div class="time"><span class="year">2016</span>-<span class="month">3</span>-<span class="day">21</span></div>
+				</div>
+				<a href="javascript:void(0);" class="toright"></a>
+			</div>
+			<div class="each">
+				<div class="pic"><img src="../imgs/pic3.png" alt=""></div>
+				<div class="introduce">
+					<span class="billname">黑椒牛排</span>
+					<span class="jieshao">温暖的烛光，浪漫的气氛，怎么少得了一份...</span>
+					<div class="dashang"><span>8</span><span>人打赏</span></div>
+					<div class="write">写评论</div>
+					<a href="javascript:void(0);" class="share">分享</a>
+					<div class="time"><span class="year">2016</span>-<span class="month">3</span>-<span class="day">15</span></div>
+				</div>
+				<a href="javascript:void(0);" class="toright"></a>
+			</div>
+			<div class="each">
+				<div class="pic"><img src="../imgs/pic4.png" alt=""></div>
+				<div class="introduce">
+					<span class="billname">梅子番茄-恋爱的味道</span>
+					<span class="jieshao">撒娇女人最好命！还记得酸酸甜甜的初恋吗...</span>
+					<div class="dashang"><span>2</span><span>人打赏</span></div>
+					<div class="write">写评论</div>
+					<a href="javascript:void(0);" class="share">分享</a>
+					<div class="time"><span class="year">2016</span>-<span class="month">2</span>-<span class="day">23</span></div>
+				</div>
+				<a href="javascript:void(0);" class="toright"></a>
+			</div>
+		</div>
+	
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;
+		t||(t=540),n>t&&(n=t);
+		var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"
+	}
+	var o,i,d,s=document,a=window,l=s.documentElement;
+	n(),
+	a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+	a.addEventListener("pageshow",function(e){
+		e.persisted&&(clearTimeout(o),o=setTimeout(n,300))
+	},!1),
+	"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){
+		s.body.style.fontSize="100px"
+	},!1)
+}(750,750);
+// 关注和取消关注
+$('.guanzhu').click(function(){
+	$(this).toggleClass('guanzhus');
+	if ($(this).hasClass('guanzhus')) {
+		$(this).text('取消关注');
+	}else{
+		$(this).text('关注');
+	}
+})
+// 
+$('.total').text($('.each').length);
+
+</script>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>05登陆中心</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */ /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;}
+		body {font-family: arial;background: rgb(230,229,221);}
+		.up {width: 100%;border-bottom: .01rem solid rgb(209,208,204);background: white;box-sizing: border-box;padding-top: .69rem;margin-bottom: .09rem;background-image: url(../imgs/denglubg.png);background-size: 100% 100%;background-repeat: no-repeat;box-sizing: border-box;}
+		.picbox {height: 1.81rem;width: 1.81rem;margin: 0 auto .2rem;border: .08rem solid rgb(182,157,117);border-radius: 50%;position: relative;background: rgb(127,112,76);}
+		.pic {width: 1.51rem;height: 1.51rem;border-radius: 50%;position: absolute;right: 0;left: 0;margin:.15rem auto;font-size: 0;overflow: hidden; }
+		.pic img{width: 100%;height: 100%;}
+		.denglu {height:.6rem;margin: .3rem auto 0;box-sizing: border-box;font-size: .32rem;line-height: .6rem;text-align: center;border-radius: .06rem;color: rgb(236,231,232);letter-spacing: .04rem;margin-bottom: .21rem;}
+		.guanzhu {width: 6.12rem;height: .8rem;border-top: 1px solid rgb(184,183,183);margin: 0 auto;font-size: 0;position: relative;}
+		.guanzhuinner {width: 50%;float: left;height: .8rem;text-align: center;}
+		.guanzhuinner span{font-size: .24rem;color: rgb(184,183,183);line-height: .8rem;}
+		.guanzhuinner span:nth-child(1){margin-right: .3rem;}
+		.guanzhuinner1 span:nth-child(1){margin-right: .3rem;}
+		.guanzhuinner:nth-child(1) span:after{content: '';width: .02rem;height: .6rem;position: absolute;top: 0;left: 0;background: rgb(184,183,183);top: .11rem;left: 3.02rem;}
+		.guanzhuinner1 {width: 33.3%;float: left;height: .8rem;text-align: center;}
+		.guanzhuinner1 span {font-size: .24rem;color: rgb(184,183,183);line-height: .8rem;}
+		.guanzhuinner1:nth-child(1) span:after{content: '';width: .02rem;height: .6rem;position: absolute;top: 0;left: 0;background: rgb(184,183,183);top: .11rem;left: 2rem;}
+		.guanzhuinner1:nth-child(2) span:after{content: '';width: .02rem;height: .6rem;position: absolute;top: 0;left: 0;background: rgb(184,183,183);top: .11rem;left: 3.99rem;}
+		.guanzhuinner:nth-child(1) span:nth-child(2){color: rgb(92,219,16);}
+		.guanzhuinner:nth-child(2) span:nth-child(2){color: rgb(225,52,14);}
+		.guanzhuinner1:nth-child(1) span:nth-child(2){color: rgb(55,192,225);}
+		.guanzhuinner1:nth-child(2) span:nth-child(2){color: rgb(147,0,203);}
+		.guanzhuinner1:nth-child(3) span:nth-child(2){color: rgb(216,0,30);}
+		.down{width: 100%;height: 6.62rem;background: white;font-size: 0;}
+		.order{width: 100%;height: .62rem;border-bottom: 1px solid rgb(230,229,221);line-height: .61rem;font-size: .24rem;color: rgb(31,31,31);box-sizing: border-box;padding-left: .31rem;position: relative;}
+		.order i {display: block;position: absolute;width: .12rem;height: .22rem;background-image: url(../imgs/right.png);background-size: 100% 100%;background-repeat: no-repeat;top: .19rem;right:.3rem;}
+		.ul1{width: 100%;height: 1.14rem;border-bottom: 1px solid rgb(184,183,183);padding-top: .22rem;padding-left: .9rem;}
+		.ul1 li {float: left;font-size: 0;}
+		.ul1  a {display: block;box-sizing: border-box;padding-top: .49rem;height: 1.14rem;font-size: .2rem;color: rgb(184,183,183);margin-right: 1rem;}
+		.ul1 li:nth-child(1){background-image: url(../imgs/fukuai.png);background-size: .45rem .37rem;background-repeat: no-repeat;background-position: 10% 0;}
+		.ul1 li:nth-child(2){background-image: url(../imgs/fahuo.png);background-size: .49rem .4rem;background-repeat: no-repeat;background-position: 10% 0;}
+		.ul1 li:nth-child(3){background-image: url(../imgs/shouhuo.png);background-size: .35rem .43rem;background-repeat: no-repeat;background-position: 10% 0;}
+		.ul1 li:nth-child(4){background-image: url(../imgs/pingjia.png);background-size: .37rem .42rem;background-repeat: no-repeat;background-position: 10% 0;}
+		.ul2 {font-size: 0;}
+		.ul2 li a {display:block;width: 100%;height: .81rem;box-sizing: border-box;border-bottom: 1px solid rgb(184,183,183);padding-left: .87rem;line-height: .81rem; font-size: .24rem;color: rgb(27,24,31);position: relative;}
+		.ul2 i {display: block;position: absolute;width: .12rem;height: .22rem;background-image: url(../imgs/right.png);background-size: 100% 100%;background-repeat: no-repeat;top: .3rem;right:.3rem;}
+		.ul2 li:nth-child(1) a {background-image: url(../imgs/gouwuche.png);background-size: .3rem .3rem;background-position: .3rem .22rem;background-repeat: no-repeat;}
+		.ul2 li:nth-child(2) a {background-image: url(../imgs/huiyuan.png);background-size: .34rem .29rem;background-position: .26rem .29rem;background-repeat: no-repeat;}
+		.ul2 li:nth-child(3) a {background-image: url(../imgs/kefu.png);background-size: .3rem .32rem;background-position: .31rem .21rem;background-repeat: no-repeat;}
+		.ul2 li:nth-child(4) a {background-image: url(../imgs/upload.png);background-size: .36rem .24rem;background-position: .28rem .29rem;background-repeat: no-repeat;}
+		.ul2 li:nth-child(5) a {background-image: url(../imgs/upload.png);background-size: .29rem .29rem;background-position: .32rem .24rem;background-repeat: no-repeat;}
+		.footer {position: fixed;bottom: 0;width: 100%;height:.97rem;background-image: url(../imgs/foot.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.footbox {width: 20%;height: 100%;float: left;position: relative;}
+		.footbox a {display: block;position: absolute;}
+		.footpic1 {width: .4rem;height: .65rem;top: .18rem;left: .55rem;background: url(../imgs/homepage.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0%;}
+		.footpic2 {width: .42rem;height: .64rem;top: .19rem;left: .55rem;background: url(../imgs/shangcheng.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic3 {width: .48rem;height: .64rem;top: .19rem;left: .52rem;background: url(../imgs/xuan.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic4 {width: .5rem;height: .64rem;top: .19rem;left: .51rem;background: url(../imgs/find.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic5 {width: .38rem;height: .65rem;top: .19rem;left: .56rem;background: url(../imgs/mine.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 102%;}
+	</style>
+</head>
+<body>
+	<div class="up">
+		<div class="picbox">
+			<div class="pic"><img src="../imgs/geren.png" alt=""></div>
+		</div>
+		<div class="denglu">宝宝别闹</div>
+		<div class="guanzhu">
+			<div class="guanzhuinner"><span>关注</span><span>6</span></div>
+			<div class="guanzhuinner"><span>粉丝</span><span>17</span></div>
+		</div>
+		<div class="guanzhu">
+			<div class="guanzhuinner1"><span>收藏</span><span>5</span></div>
+			<div class="guanzhuinner1"><span>消息</span><span>39</span></div>
+			<div class="guanzhuinner1"><span>可用积分</span><span>15</span></div>
+		</div>
+	</div>
+	<div class="down">
+		<div class="order">全部订单<i></i></div>
+		<ul class="ul1">
+			<li><a href="#">待付款</a></li>
+			<li><a href="#">待发货</a></li>
+			<li><a href="#">待收货</a></li>
+			<li><a href="#">待评价</a></li>
+		</ul>
+		<ul class="ul2">
+			<li><a href="javascript:void(0);">我的购物车<i></i></a></li>
+			<li><a href="javascript:void(0);">我的会员<i></i></a></li>
+			<li><a href="javascript:void(0);">客服热线<i></i></a></li>
+			<li><a href="javascript:void(0);">我的上传<i></i></a></li>
+			<li><a href="javascript:void(0);">我的设置<i></i></a></li>
+		</ul>
+	</div>
+	<div class="footer">
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/01%E4%B8%BB%E9%A1%B5.html#" class="footpic footpic1"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/02%E8%8F%9C%E5%93%81.html#" class="footpic footpic2"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/03%E9%80%89%E8%8F%9C.html" class="footpic footpic3"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/04find.html" class="footpic footpic4"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/05%E4%B8%AA%E4%BA%BA%E7%99%BB%E9%99%86%E4%B8%AD%E5%BF%83.html" class="footpic footpic5"><img src="" alt=""></a>
+		</div>
+	</div>
+
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;t||(t=540),n>t&&(n=t);var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"}
+		var o,i,d,s=document,a=window,l=s.documentElement;
+		n(),
+		a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+		a.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(o),o=setTimeout(n,300))},!1),"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){s.body.style.fontSize="100px"},!1)}(750,1296);
+
+// foot变化
+$('.footpic').click(function(){
+	$('.footpic').css({
+		backgroundPosition:'0 -1%',
+	})
+	$(this).css({
+		backgroundPosition:'0 100%',
+	})
+})
+
+</script>
+</html>

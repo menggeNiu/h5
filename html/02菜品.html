@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>03菜品</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */ /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;}
+		body {font-family: arial;}
+		.head {width:7.5rem;height: .9rem;background-image: url(../imgs/031headbg.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;top: 0;left: 0;}
+		.to03 {display: block;position: absolute;top: .27rem;left: .3rem;background-image: url(../imgs/to03.png);background-size: 100% 100%;background-repeat: no-repeat;width: .21rem;height: .39rem;}
+		.kezuo {width: 1.35rem;height: .31rem;display: block;position: absolute;top: .3rem;left: 3.09rem;color: white;font-size: .33rem;line-height: .31rem;}
+		.searchs{position: absolute;width: .41rem;height:.41rem;top: .22rem;right: 1.11rem;background-image: url(../imgs/fangda.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.more{position: absolute;width: .42rem;height: .32rem;top: .27rem;right: .3rem;background-image: url(../imgs/gengduo.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.headmark {width:7.5rem;height: .83rem;}
+		.inner {width: 2.37rem;height: .56rem;margin:.15rem auto 0;}
+		.inner a {display: block;float: left;width: 50%;height: 100%;line-height: .56rem;text-align: center;color: rgb(134,117,88);font-size: .2rem;}
+		.quanzi{background-image: url(../imgs/quanzi.png);background-size: 200% 100%;background-repeat: no-repeat;background-position: 0 0;}
+		.shipin {background-image: url(../imgs/shipin.png);background-size: 200% 100%;background-repeat: no-repeat;background-position: 100% 0;}
+		.address{position: absolute;font-size: .34rem;color: rgb(237,237,237);top: .24rem;left: .32rem;cursor: pointer;}
+		.jiantou{display: inline-block;width: .23rem;height: .13rem;background-image: url(../imgs/down1.png);background-size: 100% 100%;background-repeat: no-repeat;margin-left:.04rem; }
+		.jiantous{background-image: url(../imgs/up1.png);}
+		.contents{background: rgb(230,229,221);}
+		.left,.right{box-sizing: border-box;width: 100%;padding-left: .3rem;padding-right: .3rem;padding-top: .16rem;overflow: hidden;position:
+		relative;z-index: -5;}
+		.leftinner{width: 3.38rem;height: 5.6rem;float: left;margin-bottom: .14rem;background: white;box-sizing: border-box;padding-top: .08rem;padding-left: .08rem;padding-right: .08rem;font-size: 0;position: relative;z-index: -1;}
+		.leftinner:nth-child(2n-1){margin-right: .14rem;}
+		.pic{width: 100%;height: 4.25rem;}
+		.pic img{width: 100%;height: 100%;}
+		.name{display: block;font-size: .26rem;color: rgb(31,31,31);margin-top: .21rem;}
+		.money{margin-top: .3rem;line-height: .32rem;}
+		.money span{font-size: .32rem;color: #ff0000;}
+		.zhuanfa{width: .24rem;height: .24rem;position: absolute;bottom: .08rem;right: .54rem;background-image: url(../imgs/zhuanfa.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.tianjia{width: .27rem;height: .25rem;position: absolute;bottom: .08rem;right: .09rem;background-image: url(../imgs/tianjiaa.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.tianjiaa{background-image: url(../imgs/tianjiaaa.png);}
+		.footer {position: fixed;bottom: 0;width: 100%;height:.97rem;background-image: url(../imgs/foot.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.footbox {width: 20%;height: 100%;float: left;position: relative;z-index: 200;}
+		.footbox a {display: block;position: absolute;}
+		.footpic1 {width: .4rem;height: .65rem;top: .18rem;left: .55rem;background: url(../imgs/homepage.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0%;}
+		.footpic2 {width: .42rem;height: .64rem;top: .19rem;left: .55rem;background: url(../imgs/shangcheng.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 102%;}
+		.footpic3 {width: .48rem;height: .64rem;top: .19rem;left: .52rem;background: url(../imgs/xuan.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic4 {width: .5rem;height: .64rem;top: .19rem;left: .51rem;background: url(../imgs/find.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic5 {width: .38rem;height: .65rem;top: .19rem;left: .56rem;background: url(../imgs/mine.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.shoppingcar {width: 1rem;height: 1rem;position: fixed;display: block;top: 9.42rem;left: 6.44rem;background: url(../imgs/shoppingcar.png);background-size: 100% 100%;background-repeat: no-repeat;z-index: 200;}
+		.province{position: absolute;top: .84rem;padding-left: .32rem;box-sizing: border-box;width: 4.5rem;background: rgba(55,42,32,.85);font-size: 0;padding-top: .2rem;display: none;}
+		.provinces{display: block;}
+		.province li {width:25%;font-size: .2rem;float: left;color: white;margin-bottom: .3rem;cursor: pointer;}
+		.tanchu {width: 1.65rem;height: 3.3rem;background-image: url(../imgs/tanchubg1.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;z-index: 400;top: .7rem;right: .21rem;box-sizing: border-box;font-size: 0;padding-top: .6rem;display: none;}
+		.tanchu a {display: block;width: 100%;height: .44rem;color: #fff;font-size: .28rem;line-height: .44rem;text-align: center;-webkit-border-image: url(../imgs/line.png) 0 0 1 0 stretch;border-bottom: 1px solid;}
+		.tanchus{display: block;}
+	</style>
+</head>
+<body>
+	<div class="head">
+		<div class="address"><span>北京</span><i class="jiantou"></i></div>
+		<a href="搜索页.html" class="searchs"></a>
+		<a href="javascript:void(0):" class="more"></a>
+		<div class="tanchu">
+			<a href="javascript:void(0);">荤菜</a>
+			<a href="javascript:void(0);">素菜</a>
+			<a href="javascript:void(0);">汤羹</a>
+			<a href="javascript:void(0);">凉菜</a>
+			<a href="javascript:void(0);">更多</a>
+		</div>
+		<ul class="province">
+			<li>北京</li>
+			<li>天津</li>
+			<li>上海</li>
+			<li>重庆</li>
+			<li>吉林</li>
+			<li>黑龙江</li>
+			<li>江苏</li>
+			<li>浙江</li>
+			<li>安徽</li>
+			<li>福建</li>
+			<li>江西</li>
+			<li>山东</li>
+			<li>河南</li>
+			<li>辽宁</li>
+			<li>湖南</li>
+			<li>四川</li>
+			<li>贵州</li>
+			<li>湖北</li>
+			<li>云南</li>
+			<li>甘肃</li>
+			<li>青海</li>
+			<li>河北</li>
+			<li>内蒙古</li>
+			<li>山西</li>
+			<li>台湾</li>
+			<li>广西</li>
+			<li>西藏</li>
+			<li>宁夏</li>
+			<li>新疆</li>
+			<li>香港</li>
+			<li>澳门</li>
+		</ul>
+		<div class="inner">
+			<a href="javascript:void(0);" class="quanzi">单品</a>
+			<a href="javascript:void(0);" class="shipin">菜品</a>
+		</div>
+	</div>
+	<div class="headmark"></div>
+	<div class="left contents">
+		<div class="leftinner">
+			<div class="pic"><img src="../imgs/pic21.png" alt=""></div>
+			<span class="name">精选延庆生态芦笋300g</span>
+			<div class="money"><span>￥</span><span>21.80</span></div>
+		</div>
+		<div class="leftinner">
+			<div class="pic"><img src="../imgs/pic22.png" alt=""></div>
+			<span class="name">精选兰州百合150g</span>
+			<div class="money"><span>￥</span><span>16.80</span></div>
+		</div>
+		<div class="leftinner">
+			<div class="pic"><img src="../imgs/pic23.png" alt=""></div>
+			<span class="name">精选山东迷你小土豆500g</span>
+			<div class="money"><span>￥</span><span>5.00</span></div>
+		</div>
+		<div class="leftinner">
+			<div class="pic"><img src="../imgs/pic24.png" alt=""></div>
+			<span class="name">精选本地卷心菜600g</span>
+			<div class="money"><span>￥</span><span>6.90</span></div>
+		</div>
+	</div>
+	<div class="right contents">
+		<div class="leftinner">
+			<div class="pic"><img src="../imgs/pics21.png" alt=""></div>
+			<span class="name">燕麦粥</span>
+			<div class="money"><span>￥</span><span>22.80</span></div>
+			<a href="javascript:void(0);" class="zhuanfa"></a>
+			<a href="javascript:void(0);" class="tianjia"></a>
+		</div>
+		<div class="leftinner">
+			<div class="pic"><img src="../imgs/pics22.png" alt=""></div>
+			<span class="name">韭菜鸡蛋馅</span>
+			<div class="money"><span>￥</span><span>26.80</span></div>
+			<a href="javascript:void(0);" class="zhuanfa"></a>
+			<a href="javascript:void(0);" class="tianjia"></a>
+		</div>
+		<div class="leftinner">
+			<div class="pic"><img src="../imgs/pics23.png" alt=""></div>
+			<span class="name">柠檬鱼</span>
+			<div class="money"><span>￥</span><span>25.00</span></div>
+			<a href="javascript:void(0);" class="zhuanfa"></a>
+			<a href="javascript:void(0);" class="tianjia"></a>
+		</div>
+		<div class="leftinner">
+			<div class="pic"><img src="../imgs/pics24.png" alt=""></div>
+			<span class="name">汉堡包</span>
+			<div class="money"><span>￥</span><span>36.90</span></div>
+			<a href="javascript:void(0);" class="zhuanfa"></a>
+			<a href="javascript:void(0);" class="tianjia"></a>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/01%E4%B8%BB%E9%A1%B5.html#" class="footpic footpic1"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/02%E8%8F%9C%E5%93%81.html#" class="footpic footpic2"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/03%E9%80%89%E8%8F%9C.html" class="footpic footpic3"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/04find.html" class="footpic footpic4"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/05%E4%B8%AA%E4%BA%BA%E7%99%BB%E9%99%86%E4%B8%AD%E5%BF%83.html" class="footpic footpic5"><img src="" alt=""></a>
+		</div>
+	</div>
+	<a href="购物车.html" class="shoppingcar"></a>
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;t||(t=540),n>t&&(n=t);var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"}
+		var o,i,d,s=document,a=window,l=s.documentElement;
+		n(),
+		a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+		a.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(o),o=setTimeout(n,300))},!1),"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){s.body.style.fontSize="100px"},!1)}(750,1296);
+$('.inner a').click(function(){
+	var index = $(this).index($('.inner a'));
+	$('.inner a').css({
+		backgroundPosition:'100% 0'
+	})
+	$('.contents').hide();
+	$(this).css({
+		backgroundPosition:'0 0'
+	})
+	$('.contents').eq(index).show();
+})
+//收藏点击时候颜色的变化
+$('.shoucang').click(function(){
+	$(this).toggleClass('shoucang1');
+})
+// foot变化
+$('.footpic').click(function(){
+	$('.footpic').css({
+		backgroundPosition:'0 -1%',
+	})
+	$(this).css({
+		backgroundPosition:'0 100%',
+	})
+})
+// 购物车
+var shoppingcar = document.querySelectorAll('.shoppingcar')[0];
+shoppingcar.addEventListener('touchmove',function(e){
+	var ev = e||window.event;
+	ev.preventDefault();//阻止触屏滑动
+	var nowy = ev.touches[0].clientY-shoppingcar.offsetHeight/2;
+	if (nowy<=$('.headmark').height()) {
+		nowy = $('.headmark').height();
+	}
+	if (nowy>=$('.footer').position().top-$('.shoppingcar').height()) {
+		nowy =$('.footer').position().top-$('.shoppingcar').height();
+	}
+	shoppingcar.style.top =nowy +'px';
+},false)
+// 
+$('.address').click(function(){
+	$('.jiantou').toggleClass('jiantous');
+	$('.province').toggleClass('provinces');
+})
+if (localStorage.getItem('province')) {
+	$('.address').find('span').text(localStorage.getItem('province'));
+}
+$('.province').on('click','li',function(){
+	console.log('a');
+	$('.jiantou').toggleClass('jiantous');
+	$('.province').toggleClass('provinces');
+	$('.address').find('span').text($(this).text());
+	localStorage.setItem('province',$(this).text());
+
+})
+$('.tianjia').click(function(){
+	$(this).toggleClass('tianjiaa');
+})
+// more
+$('.more').click(function(){
+	$(".tanchu").toggleClass('tanchus');
+})
+$('.tanchu').click(function(){
+	$(this).toggleClass('tanchus');
+})
+</script>
+</html>

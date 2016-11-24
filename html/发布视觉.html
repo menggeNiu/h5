@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>0301可选</title>
+	<link rel="stylesheet" href="../css/webuploader.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */  /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;
+		}
+		body {width: 100%;background: rgb(230,229,221);}
+		.head {width:100%;height: .9rem;background-image: url(../imgs/031headbg.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;top: 0;left: 0;font-size: 0;}
+		.to03 {display: block;position: absolute;top: .27rem;left: .3rem;background-image: url(../imgs/to03.png);background-size: 100% 100%;background-repeat: no-repeat;width: .21rem;height: .39rem;}
+		.kezuo {height: .9rem;display: block;color: white;font-size: .33rem;line-height: .9rem;text-align: center;}
+		.headmark {width:7.5rem;height: .86rem;}
+		.content{width: 100%;font-size: 0;}
+		textarea{width: 100%;height: 2.27rem;font-size: .24rem;color: rgb(153,153,153);box-sizing: border-box;padding-top: .47rem;padding-left: .31rem;padding-right: .31rem;resize: none;overflow: hidden;border:none;}
+		.upload{width: 100%;box-sizing: border-box;padding-left: .3rem;background: white;font-size: 0;padding-bottom: .41rem;overflow: hidden;}
+		.pic {float: left;width: 1.44rem;height: 1.44rem;margin-right:.25rem;margin-bottom: .39rem; }
+		.pic img{width: 100%;height: 100%;}
+		#choose{float: left;width: 1.44rem;height: 1.44rem;}
+		.other {width: 100%;margin-top: .1rem;font-size: 0;}
+		.other a {display: block;width: 100%;height: .8rem;box-sizing: border-box;padding-left: .7rem;font-size: .24rem;color: rgb(31,31,31);background-color: white;line-height: .8rem;}
+		.weizhi{background-image: url(../imgs/weizhi.png);background-size: .23rem .27rem;background-position: .33rem .25rem;background-repeat: no-repeat;}
+		.dongtai {background-image: url(../imgs/dongtai.png);background-size: .27rem .22rem;background-position: .33rem .28rem;background-repeat: no-repeat;}
+		.footer {position: fixed;width: 100%;height: .89rem;bottom: 0;left: 0;font-size: 0;}
+		.footer a {display:block;width: 100%;height: .89rem;line-height: .89rem;font-size: .28rem;color: white;background: rgb(246,152,52);text-align: center;}
+	</style>
+</head>
+<body>
+	<div class="head">
+		<a href="" class="to03"></a>
+		<span class="kezuo">发布</span>
+	</div>
+	<div class="headmark"></div>
+	<div class="content">
+		<textarea placeholder="这一刻想说什么......"></textarea>
+	</div>
+	<ul class="upload">
+		<li id="choose"></li>
+	</ul>
+	<div class="other">
+		<a href="javascript:void(0);" class="weizhi">我的位置</a>
+	</div>
+	<div class="other">
+		<a href="javascript:void(0);" class="dongtai">不让谁看我的动态</a>
+	</div>
+	<div class="footer">
+		<a href="javascript:void(0);">我要上传</a>
+	</div>
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script src='../js/webuploader.js'></script>
+<script src="http://api.map.baidu.com/api?ak=你的AK码&v=2.0&services=false"></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;t||(t=540),n>t&&(n=t);var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"}
+		var o,i,d,s=document,a=window,l=s.documentElement;
+		n(),
+		a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+		a.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(o),o=setTimeout(n,300))},!1),"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){s.body.style.fontSize="100px"},!1)}(750,1296);
+$('body').height(window.innerHeight);
+$('textarea').focus(function(){
+	$(this).removeAttr('placeholder');
+})
+$('textarea').blur(function(){
+	if ($(this).val()=='') {
+		$(this).attr('placeholder','这一刻你有什么想说的.....');
+	}
+})
+
+// 点击图片上传
+
+// 初始化Web Uploader
+var uploader = WebUploader.create({
+    // 选完文件后，是否自动上传。
+    auto: true,
+    // 文件接收服务端。
+     // swf文件路径
+    swf: '/js/Uploader.swf',
+    server: 'http://webuploader.duapp.com/server/fileupload.php',
+    // 选择文件的按钮。可选。
+    // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+    pick: '#choose',
+    // 只允许选择图片文件。
+    accept: {
+        title: 'Images',
+        extensions: 'gif,jpg,jpeg,bmp,png',
+        mimeTypes: 'image/*'
+    }
+});
+// 当有文件添加进来的时候
+uploader.on( 'fileQueued', function( file ) {
+    var $li = $('<li class="pic"><img></li>'),
+        $img = $li.find('img');
+    // $list为容器jQuery实例
+    $('#choose').before( $li );
+    // 创建缩略图
+    // 如果为非图片文件，可以不用调用此方法。
+    // thumbnailWidth x thumbnailHeight 为 100 x 100
+    uploader.makeThumb( file, function( error, src ) {
+        if ( error ) {
+            $img.replaceWith('<span>不能预览</span>');
+            return;
+        }
+        $img.attr( 'src', src );
+    });
+});
+
+// 定位
+$('.weizhi').click(function(){
+	function Location(){};
+	Location.prototype.getLocation = function(callback){
+	  var options = {
+	    enableHighAccuracy: true,
+	    maximumAge: 1000
+	  };
+	  this.callback = Object.prototype.toString.call(callback) =="[object Function]" ?
+	    callback : 
+	    function(address){
+	      alert(address.province + address.city);
+	      console.log("getocation(callbackFunction) 可获得定位信息对象");
+	    };
+	  var self = this;
+	  if (navigator.geolocation) {
+	    //浏览器支持geolocation
+	    navigator.geolocation.getCurrentPosition(function(position){
+	      //经度
+	      var longitude = position.coords.longitude;
+	      //纬度
+	      var latitude = position.coords.latitude;
+	      self.loadMapApi(longitude,latitude);
+	    }, self.onError, options);
+	  } else {
+	    //浏览器不支持geolocation
+	  }
+	};
+	Location.prototype.loadMapApi = function(longitude, latitude){
+	  var self = this;
+	  var oHead = document.getElementsByTagName('HEAD').item(0);
+	  var oScript= document.createElement("script");
+	  oScript.type = "text/javascript";
+	  oScript.src="http://api.map.baidu.com/getscript?v=2.0&ak=A396783ee700cfdb9ba1df281ce36862&services=&t=20140930184510";
+	  oHead.appendChild(oScript);
+	  oScript.onload = function(date){
+	    var point = new BMap.Point(longitude, latitude);
+	    var gc = new BMap.Geocoder();
+	    gc.getLocation(point, function(rs) {
+	      var addComp = rs.addressComponents;
+	      self.callback(addComp);
+	    });
+	  }
+	};
+	Location.prototype.onError = function(error) {
+	  switch (error.code) {
+	    case 1:
+	      alert("位置服务被拒绝");
+	      break;
+	    case 2:
+	      alert("暂时获取不到位置信息");
+	      break;
+	    case 3:
+	      alert("获取信息超时");
+	      break;
+	    case 4:
+	      alert("未知错误");
+	      break;
+	  }
+	};
+	//调用
+	var local = new Location();
+	local.getLocation(function(res){
+	  //此处就是返回的地理位置信息
+	  $(this).text(res);
+	})
+})
+// $('.weizhi').click(function(){
+
+// 	navigator.geolocation.getCurrentPosition(function (position) {
+//          var lat = position.coords.latitude;
+//         var lon = position.coords.longitude;
+//           var point = new BMap.Point(lon, lat);  // 创建坐标点
+//           // 根据坐标得到地址描述
+//          var myGeo = new BMap.Geocoder();
+//           myGeo.getLocation(point, function (result) {
+//               var city = result.addressComponents.city;
+//               $(this).text(city);
+//              console.log('a');
+//          });
+//      });
+// })
+
+</script>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>0302菜品详情</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */ /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;}
+		body {font-family: arial;}
+		.contain{width: 100%;height:12.96rem;overflow: hidden;}
+		.head {width: 100%;height: 4.72rem;background-image: url(../imgs/zanbg.png);background-size: 100% 100%;background-repeat: no-repeat;position: relative;}
+		
+		.return {display: block;width: .2rem;height: .37rem;background-image: url(../imgs/reutrn.png);background-size: 100% 100%;background-repeat: no-repeat;position: absolute;top: .34rem;left: .31rem;}
+		.zan {position: absolute;left: 0;right: 0;margin: .43rem auto 0 ;width:.7rem;height: .34rem;}
+		.zan span {display: block;font-size: .34rem;color: rgb(1,1,1);}
+		.name {position: absolute;right: 0;left: 0;margin: 2.07rem auto 0;width: 2.33rem;}
+		.name span:nth-child(1){display:block;height: .32rem;font-size: .32rem;line-height: .32rem;margin-bottom: .15rem;color: rgb(38,38,38);}
+		.name span:nth-child(2) {display:block;padding-left: .38rem;height: .32rem;font-size: .32rem;background-image: url(../imgs/zanheart.png);background-repeat: no-repeat;background-position: .08rem .09rem;background-size: .21rem .17rem;line-height: .32rem;color: rgb(38,38,38);}
+		.circle {position: absolute;left: 0;right: 0;margin:-1.08rem auto 0;width: 1.95rem;height: 1.95rem;border-radius: 50%;background: white;}
+		.circleinner {position: absolute;right: 0;left: 0;margin: .09rem auto 0;width: 1.77rem;height: 1.77rem;border-radius: 50%;background-image: url(../imgs/circlebg.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.money {width: 100%;position: relative;box-sizing: border-box;padding-top: 1.44rem;}
+		.hopetext {padding-left: .55rem;box-sizing: border-box;padding-right: .55rem;width: 100%;}
+		.hopetext span {display: block;}
+		.hopetext span:nth-child(1) {float: left;width: .62rem;height: 0.02rem;background: rgb(182,157,117);margin-top: .18rem;}
+		.hopetext span:nth-child(2) {float: left;font-size: .34rem;height: .34rem;line-height: .34rem;margin-left: .22rem;}
+		.hopetext span:nth-child(3) {float: right;width: .62rem;height: 0.02rem;background: rgb(182,157,117);margin-top: .18rem;}
+		.money ul {margin-top: .48rem;margin-left: .85rem;width: 100%;height: 2.89rem;}
+		.money ul li {float: left;width: 1.74rem;height: 1.3rem;border: .03rem solid rgb(90,169,43);margin-right: .2rem;border-radius: .06rem;margin-bottom: .19rem;text-align: center;}
+		.money ul li a{display: block;width: 1.74rem;height:1.3rem;line-height:1.3rem;text-align: center;font-size: 0;}
+		.money ul li a span:nth-child(1){color:rgb(90,169,43);font-size: .5rem;}
+		.money ul li a span:nth-child(2){color:rgb(90,169,43);font-size: .24rem;margin-left: .03rem;}
+		.self {margin-top: .38rem;width: 100%;height: .5rem;}
+		.self a {display: block;width: 1.8rem;height: .5rem;font-size: 0;margin: 0 auto;border-radius: .5rem;background:rgb(182,157,117);line-height: .5rem;text-align: center;}
+		.self a span{font-size: .32rem;color: white;}
+		.niming {width: 100%;margin-top: 1.71rem;text-align: center;}
+		.niinner {font-size: 0;}
+		.nispan {font-size: .28rem;padding-left: .37rem;background-image: url(../imgs/select1.png);background-repeat: no-repeat;background-size: .25rem .25rem;}
+		.select {background-image: url(../imgs/select.png);background-repeat: no-repeat;background-size: .25rem .25rem;}
+		.shuru{position: absolute;top: 0;left: 0;background: rgba(0,0,0,.3);width: 100%;display: none;}
+		.box {width: 6.48rem;height: 3.98rem;margin: 3.04rem auto;background: white;border-radius: .1rem;position: relative;box-sizing: border-box;border: 1px white solid;}
+		.del{display:block;position: absolute;width: .27rem;height: .27rem;background-image: url(../imgs/close.png);background-size: 100% 100%;background-repeat: no-repeat;top: .42rem;left: .29rem;cursor: pointer;}
+		.text {margin-top: .4rem;font-size: 0;width: 100%;height: .34rem;}
+		.text span {display:block;font-size: .34rem;color: rgb(31,31,31);margin: 0 auto;height: .34rem;width: 2rem;}
+		form {font-size: 0;width: 100%;margin-top: .66rem;}
+		form input {display:block;width: 5.6rem;height: .88rem;font-size: .34rem;outline: 0;border-radius: .1rem;margin:0 auto .22rem;box-sizing: border-box; }
+		form input:nth-child(1) {padding-left: .34rem;border: .01rem solid rgb(31,31,31);}
+		form input:nth-child(2) {background: rgb(90,169,43);color: white;border: none;}
+	</style>
+</head>
+<body>
+	<div class="contain">
+		<div class="head">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/04find.html" class="return"></a>
+			<div class="zan"><span>赞赏</span></div>
+			<div class="name">
+				<span>宝宝别闹，咬你</span>
+				<span>其实很爱你</span>
+			</div>
+		</div>
+		<div class="circle">
+			<div class="circleinner"></div>
+		</div>
+		<div class="money">
+			<div class="hopetext">
+				<span></span>
+				<span>鼓励一下，期待您有更多好菜品</span>
+				<span></span>
+			</div>
+			<ul>
+				<li>
+					<a href="javascript:void(0);">
+						<span class="count">1</span>
+						<span class="yuan">元</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<span class="count">2</span>
+						<span class="yuan">元</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<span class="count">8</span>
+						<span class="yuan">元</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<span class="count">18</span>
+						<span class="yuan">元</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<span class="count">28</span>
+						<span class="yuan">元</span>
+					</a>
+				</li>
+				<li>
+					<a href="javascript:void(0);">
+						<span class="count">88</span>
+						<span class="yuan">元</span>
+					</a>
+				</li>
+			</ul>
+			<div class="self">
+				<a href="javascript:void(0);">
+					<span>自定义金额</span>
+				</a>
+			</div>
+			<div class="niming">
+				<div class="niinner">
+					<span class="nispan">匿名赞赏</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="shuru">
+		<div class="box">
+			<i class="del"></i>
+			<div class="text"><span>自定义金额</span></div>
+			<form action="">
+				<input type="text" placeholder="金额（元）可输入1-200" class="howmuch">
+				<input type="submit" value="赞赏">
+			</form>
+		</div>
+	</div>
+
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;t||(t=540),n>t&&(n=t);var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"}
+		var o,i,d,s=document,a=window,l=s.documentElement;
+		n(),
+		a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+		a.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(o),o=setTimeout(n,300))},!1),"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){s.body.style.fontSize="100px"},!1)}(750,1296);
+//匿名点击 
+$('.nispan').click(function(){
+	$('.nispan').toggleClass('select');
+})
+// 
+$('input.howmuch').focus(function(){
+	$(this).removeAttr('placeholder');
+	$(this).val('');
+})
+$('input.howmuch').blur(function(){
+	$(this).attr('placeholder',"金额（元）可输入1-200");
+})
+// 取消submit事件
+$('form').submit(function(){ //form的onsubmit事件
+		return false;//阻止submit的默认事件
+	}) 
+// 
+$('.shuru').css({
+	height:$('.contain').height(),
+})
+$('.self a').click(function(){
+	$('.shuru').show();
+})
+$('.del').click(function(){
+	$('.shuru').hide();
+})
+</script>
+</html>

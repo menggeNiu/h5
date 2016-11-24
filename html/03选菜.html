@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>caipin</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<style> 
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */ /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		body{margin: 0;padding: 0;font-size: 100%;}
+		.contain {width: 100%;background: rgb(230,229,221);overflow: hidden;}
+		.head {width: 750px;height:84px;background: url(../imgs/bg3.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;top:0;left: 0;z-index: 10;}
+		.headmark {width: 750px;height:84px;}
+		.footer {position: fixed;width: 100%;height: 7.496%;background: url(../imgs/foot.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.footbox {width: 20%;height: 100%;float: left;position: relative;}
+		.footbox a {display: block;position: absolute;}
+		.footpic1 {width: 40px;height: 65px;top: 18px;left: 55px;background: url(../imgs/homepage.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic2 {width: 42px;height: 64px;top: 19px;left: 55px;background: url(../imgs/shangcheng.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic3 {width: 48px;height: 64px;top: 19px;left: 52px;background: url(../imgs/xuan.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 102%;}
+		.footpic4 {width: 50px;height: 64px;top: 19px;left: 51px;background: url(../imgs/find.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic5 {width: 38px;height: 65px;top: 19px;left: 56px;background: url(../imgs/mine.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.shoppingcar {width: 100px;height: 100px;position:fixed;display: block;top: 942px;left: 644px;background: url(../imgs/shoppingcar.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.more {position: absolute;display: block;width: 42px;height: 32px;top: 25px;left: 678px;background: url(../imgs/more2.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.search {position:absolute;width: 500px;height: 35px;background: transparent;color: rgb(134,117,88);border: none;outline: 0;top: 24px;left: 90px;font-size: 20px;}
+		.search::-webkit-input-placeholder {color: rgb(134,117,88);}
+		.upboxs {width: 750px;height: 260px;position: fixed;top: 84px;overflow: hidden;background-image: url(../imgs/up.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.up {height: 100%;background-image: url(../imgs/up.png);background-size: 100% 100%;background-repeat: no-repeat;box-sizing: border-box;position: absolute;top: 0;left: 0;}	
+		.upmark {height: 260px;width: 750px;}
+		.down {width: 100%;box-sizing: border-box;padding:3% 2% 3% 3%;}
+		.down img {display: inline-block;width: 200px;height: 280px;margin: 0 2% 2% 2%;} 
+		.upbox {position: relative;height: 85.8%;float: left;box-sizing: border-box;}
+		.del {height: 14.35%;position: absolute;top: 0;left: 82%;}
+		.uppic {position:absolute;height: 94.17%;top: 5.83%;left: 0;}
+		.chakan {width: 223px;height: 260px;top: 0;left: 527px;background-image: url(../imgs/chakan.png);background-size: 100% 100%;background-repeat: no-repeat;position: absolute;z-index: 100;}
+		.count {display:block;margin-top: 34%;margin-left: 13%;color:#6f6f6f;font-size: 20px;}
+		.tochakan {width: 102px;height: 46px;position: absolute;top: 130px;left: 80px;background-image: url(../imgs/tochakan.png);background-size: 100% 100%;background-repeat: no-repeat;}
+	</style>
+</head>
+<body>
+	<div class="resize head">
+		<input type="text" class="resize search" placeholder="输入菜品名称">
+		<a href="#" class="resize more"></a>
+	</div>
+	<div class="resize headmark"></div>
+	<div class="contain">
+		<div class="resize upboxs">
+			<div class="up"></div>
+			<div class="resize chakan">
+				<span class="count">0</span>
+				<a href="#" class="resize chakana"></a>
+				<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/031%E5%8F%AF%E9%80%89%E8%8F%9C%E5%93%81.html" class="resize tochakan"></a>
+			</div>
+			
+		</div>
+		<div class="resize upmark"></div>
+		<div class="down">
+			<img src="../imgs/fanqie.png" alt="" class="resize downpic">
+			<img src="../imgs/sun.png" alt="" class="resize downpic">
+			<img src="../imgs/xiaocai.png" alt="" class="resize downpic">
+			<img src="../imgs/hubo.png" alt="" class="resize downpic">
+			<img src="../imgs/zishu.png" alt="" class="resize downpic">
+			<img src="../imgs/xiqin.png" alt="" class="resize downpic">
+			<img src="../imgs/yumi.png" alt="" class="resize downpic">
+			<img src="../imgs/pingu.png" alt="" class="resize downpic">
+			<img src="../imgs/lajiao.png" alt="" class="resize downpic">
+			<img src="../imgs/hubo.png" alt="" class="resize downpic">
+			<img src="../imgs/zishu.png" alt="" class="resize downpic">
+			<img src="../imgs/xiqin.png" alt="" class="resize downpic">
+			<img src="../imgs/hubo.png" alt="" class="resize downpic">
+			<img src="../imgs/yumi.png" alt="" class="resize downpic">
+			<img src="../imgs/pingu.png" alt="" class="resize downpic">
+			<img src="../imgs/lajiao.png" alt="" class="resize downpic">
+			<img src="../imgs/hubo.png" alt="" class="resize downpic">
+			<img src="../imgs/zishu.png" alt="" class="resize downpic">
+		</div>
+	</div>
+	<div class="footer">
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/01%E4%B8%BB%E9%A1%B5.html#" class="resize footpic footpic1"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/02%E8%8F%9C%E5%93%81.html#" class="resize footpic footpic2"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/03%E9%80%89%E8%8F%9C.html" class="resize footpic footpic3"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/04find.html" class="resize footpic footpic4"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/05%E4%B8%AA%E4%BA%BA%E7%99%BB%E9%99%86%E4%B8%AD%E5%BF%83.html" class="resize footpic footpic5"><img src="" alt=""></a>
+		</div>
+	</div>
+	 <a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/%E8%B4%AD%E7%89%A9%E8%BD%A6.html" class="resize shoppingcar"></a>
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script>
+//重置各个需要重置长宽 left top值
+var scaleW = window.innerWidth/750;// 移动端用innerWidth
+$('.footer').css({
+	top:window.innerHeight-$('.footer').height(),
+})
+window.onload=function(){
+	resize();
+	$('.up').css({
+		minWidth:535*scaleW,//初始化 使up在开始的时候就有宽度
+	})
+	$('.downpic').click(function(){
+		var aSrc = $(this).attr('src');//获取下面img的src 作为上面新增图片的src
+		var divs = $('<div class="upbox"><img src="'+aSrc+'"alt="" class="uppic"><img src="../imgs/del.png" alt="" class="del"></div>');//创建src
+		$('.up').append(divs);//插入src ！！！！这个时候要先插入 然后css样式才能重置 如果不插入先重置的话 找不到
+		$('.upbox').css({
+			width:162*scaleW,
+			marginLeft:15*scaleW,
+		});
+		$('.del').css({
+			width:'18.52%',
+		})
+		$('.uppic').css({
+			width:'92.59%',
+		});
+		$('.up').css({
+			width:200*scaleW*$('.upbox').length,
+			paddingTop:11*scaleW,
+			paddingLeft:30*scaleW,
+		})
+		$('.chakan span').text($('.upbox').length);//设置有几种菜
+		$('.del').click(function(){
+			$(this).parent().remove();//点叉移除新增的upbox
+			if ($('.upbox').length>2) {
+				$('.up').css({
+					width:200*scaleW*$('.upbox').length,
+					paddingTop:11*scaleW,
+					paddingLeft:15*scaleW,
+					left:521*scaleW-185*scaleW*$('.upbox').length,
+		        })
+			}else{
+				$('.up').css({
+					width:200*scaleW*$('.upbox').length,
+					paddingTop:11*scaleW,
+					paddingLeft:15*scaleW,
+					left:15*scaleW,
+				})
+			}
+			
+			$('.chakan span').text($('.upbox').length);
+		})
+
+	})
+}
+function resize(){
+    resizes = document.querySelectorAll('.resize');
+	for(var i = 0;i<resizes.length;i++){
+		resizes[i].style.width = parseInt(getStyle(resizes[i],'width'))*scaleW+'px';
+		resizes[i].style.left = parseInt(getStyle(resizes[i],'left'))*scaleW+'px';
+		resizes[i].style.height = parseInt(getStyle(resizes[i],'height'))*scaleW+'px';
+		resizes[i].style.top = parseInt(getStyle(resizes[i],'top'))*scaleW+'px';
+		resizes[i].style.fontSize = parseInt(getStyle(resizes[i],'font-size'))*scaleW+'px';
+	}
+}
+function tozero(){
+	for(var i = 0;i<resizes.length;i++){
+		resizes[i].style='';
+	}
+}
+
+window.onresize=function(){
+	tozero();
+	resize();
+}
+function getStyle(obj,attr){
+    var ie = !+"\v1";//简单判断ie6~8
+ 	if(attr=="backgroundPosition"){//IE6~8不兼容backgroundPosition写法，识别backgroundPositionX/Y
+  		if(ie){        
+   			return obj.currentStyle.backgroundPositionX +" "+obj.currentStyle.backgroundPositionY;
+    	}
+ 	}
+ 	if(obj.currentStyle){
+  		return obj.currentStyle[attr];
+ 	}
+ 	else{
+  		return document.defaultView.getComputedStyle(obj,null)[attr];
+ 	}
+}
+// 搜索框的设置
+$('input.search').focus(function(){
+	$(this).removeAttr('placeholder');
+	$(this).val('');
+})
+$('input.search').blur(function(){
+	$(this).attr('placeholder',"输入菜品名称");
+})
+// foot图标的变化
+$('.footpic').click(function(){
+	$('.footpic').css({
+		backgroundPosition:'0 0',
+	})
+	$(this).css({
+		backgroundPosition:'0 102%',
+	})
+})
+// // 购物车
+var shoppingcar = document.querySelectorAll('.shoppingcar')[0];
+shoppingcar.addEventListener('touchmove',function(e){
+	var ev = e||window.event;
+	ev.preventDefault();//阻止触屏滑动
+	var nowy = ev.touches[0].clientY-shoppingcar.offsetHeight/2;
+	if (nowy<=82*scaleW) {
+		nowy = 82*scaleW;
+	}
+	if (nowy>=$('.footer').position().top-$('.shoppingcar').height()) {
+		nowy =$('.footer').position().top-$('.shoppingcar').height();
+	}
+	shoppingcar.style.top =nowy +'px';
+},false)
+//上面菜品栏的拖动
+var up = document.querySelectorAll('.up')[0];
+var upbox = document.querySelectorAll('.upbox');
+up.addEventListener('touchstart',function(e){
+	var ev = e||window.event;
+	var x = ev.touches[0].clientX-up.offsetLeft;
+	if (up.offsetWidth>535*scaleW) {
+		up.addEventListener('touchmove',function(e){
+			var ev = e||window.event;
+			ev.preventDefault();
+			var nowx = ev.touches[0].clientX;
+			var wei = nowx-x;
+			if (wei>=0) {
+				wei = 0;
+			}else{
+				wei = nowx-x;
+			}
+			if (up.offsetLeft<=535*scaleW-up.offsetWidth) {
+				wei = 535*scaleW-up.offsetWidth;
+
+			}
+		    up.style.left = wei+'px';
+		})
+	}
+	
+		
+	
+})
+</script>
+</html>

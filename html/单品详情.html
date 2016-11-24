@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>0302菜品详情</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */ /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;}
+		body {font-family: arial;}
+		.head {width:7.5rem;height: .9rem;background-image: url(../imgs/031headbg.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;top: 0;left: 0;font-size: 0;line-height: .9rem;z-index: 10;}
+		.to03 {display: block;position: absolute;top: .27rem;left: .3rem;background-image: url(../imgs/to03.png);background-size: 100% 100%;background-repeat: no-repeat;width: .21rem;height: .39rem;}
+		.tittle {height: .9rem;display: block;position: absolute;left: 3.09rem;color: white;font-size: .31rem;line-height: .9rem;}
+		.more {display: block;position: absolute;left: 6.77rem;top: .33rem;}
+		.more span {display: block;float: left;width: .06rem;height: .06rem;border: .01rem solid white;background: transparent;border-radius: 50%;margin-right: .08rem;}
+		.headmark {width:7.5rem;height: .83rem;}
+		.contain {width: 100%;margin-bottom: 1rem;}
+		.jieshao {width: 100%;height: 6.86rem;border-bottom: .01rem solid rgb(106,106,106)}
+		.swiper-container {width: 100%;height: 5.14rem;}
+		.swiper-slide img{width: 100%;height: 100%;}
+		.swiper-pagination-bullet {background: rgb(76,76,76);}
+		.swiper-pagination-bullet-active {background: rgb(175,175,175);}
+		.jieshaodown {width: 100%;height: 1.72rem;box-sizing: border-box;padding-top: .21rem;padding-left: .33rem;position: relative;}
+		.name {height: .26rem;font-size: 0;margin-bottom: .22rem;}
+		.name span {font-size: .26rem;line-height: .26rem;color: rgb(81,81,81);}
+		.pingjia {height: .23rem;font-size: 0;margin-bottom: .22rem}
+		.pingjia span {font-size: .23rem;line-height: .23rem;color: rgb(143,142,142);}
+		.price {height: .23rem;font-size: 0;}
+		.price span {font-size: .23rem;line-height: .23rem;color: rgb(241,68,75);}
+		.share {position: absolute;height: .68rem;width: 1.45rem;top: .21rem;right: .34rem;font-size: 0;}
+		.share a {display: block;height: .68rem;font-size: .2rem;color: rgb(196,196,196);box-sizing: border-box;padding-top: .49rem;}
+		.shoucang{float: left;background-image: url(../imgs/grayheart.png);background-size: .34rem .33rem; background-repeat: no-repeat;background-position: .06rem 0;}
+		.green{background-image: url(../imgs/green.png);background-size: .34rem .33rem; background-repeat: no-repeat;background-position: .06rem 0;}
+		.share a:nth-child(1):after{content: '';width: .02rem;height: .8rem;position: absolute;background: rgb(196,196,196);left: .71rem;top: 0;}
+		.share a:nth-child(2){float: right;background-image: url(../imgs/share.png);background-size: .36rem .34rem; background-repeat: no-repeat;background-position: 0rem .01rem;}
+		.xiaoliang {position: absolute;bottom: .2rem;right: .3rem;font-size: 0;}
+		.xiaoliang span {font-size: .24rem;color: rgb(81,81,81);line-height: .24rem;}
+		.guige {height: 2.13rem;width: 100%;box-sizing: border-box;border-bottom: 1px solid rgb(153,153,153);padding-top: .24rem;font-size: 0;padding-right: .5rem;}
+		.guige span {display: block;line-height: .24rem;height: .24rem;font-size: .24rem;color: rgb(81,81,81);margin-left: .32rem;}
+		.guige p {font-size: .24rem;color: rgb(81,81,81);text-indent: .48rem;margin-left: .6rem;margin-top: .18rem;line-height: .4rem;}
+		.trans {width: 100%;height: .58rem;box-sizing: border-box;border-bottom: 1px solid rgb(153,153,153);font-size: .24rem;line-height: .58rem;border-left:1px solid rgb(153,153,153);border-right: 1px solid rgb(153,153,153); padding-left: .31rem;background: rgb(230,229,221);color: rgb(81,81,81);}
+		.pay {width: 100%;height: .59rem;border:1px solid rgb(153,153,153);border-top: none;background: rgb(230,229,221);font-size: .24rem;padding-left: .31rem;padding-right:.31rem;color: rgb(81,81,81);line-height: .59rem; box-sizing: border-box;}
+		.pay span {display: block;padding-left: .35rem;height: .59rem;background-image: url(../imgs/time.png);background-size: .25rem .25rem;background-position: 0 45%;background-repeat: no-repeat;}
+		.pay span:nth-child(1),.pay span:nth-child(2){float: left;}
+		.pay span:nth-child(2){margin-left: 1.12rem;}
+		.pay span:nth-child(3){float: right;}
+		.tuodong {width: 100%;height: 1.17rem;font-size: .27rem;color: rgb(81,81,81);text-align: center;line-height: 1.17rem;position: relative;}
+		.tuodong i {display: block;position: absolute;background-image: url(../imgs/down.png);background-size: 100% 100%;width: .24rem;height: .12rem;left: 0;bottom: .19rem;right: 0;margin: .8rem auto 0;}
+		.dian {width: 100%;height: .85rem;box-sizing: border-box;border:1px solid rgb(153,153,153); font-size: 0;}
+		.dian a{display: block;float: left;width: 50%;height: .82rem;line-height: .82rem;text-align: center;font-size: .28rem;color: rgb(92,92,92);background: rgb(230,229,221);}
+		.dian a:nth-child(1){background: rgb(214,195,162);position: relative;}
+		.dian a:nth-child(1):after{content: '';width: 1px;height: .82rem;position: absolute;top: 0;left: 0;background:rgb(153,153,153); left: 3.72rem;}
+		.goods {width: 100%;box-sizing: border-box;padding:.11rem .29rem 0rem .29rem;}
+		.inner{width: 100%;height: 3.64rem;margin-bottom: .11rem;}
+		.inner img {width: 100%;height:100%;}
+		.babypingjia{width: 100%;margin-bottom: 2rem;display: none;}
+		.babypingjia ul {margin-top: .17rem;padding-left: .32rem;font-size: 0;}
+		.babypingjia ul li {display: inline-block;height: .45rem;border: 1px solid rgb(90,169,43);font-size: 0;line-height: .45rem;margin-right: .17rem;margin-bottom: .15rem;border-radius: .06rem;text-align: center;padding-left: .05rem;padding-right: .05rem;}
+		.babypingjia ul li span {font-size: .26rem;color:rgb(90,169,43); }
+		.users {width: 100%;margin-top: .2rem;box-sizing: border-box;padding-left: .31rem;font-size: 0;}
+		.user {height: .78rem;}
+		.touxiang {float: left;width: .78rem;height: .78rem;border-radius: 50%;font-size: 0;}
+		.touxiang img {width: 100% ;height:100%;}
+		.username {float: left;height: .78rem;margin-left: .1rem;font-size: 0;}
+		.username span {display: block;height: .78rem;font-size: .26rem;color: rgb(92,92,92);line-height: .78rem;}
+		.users p {margin-top: .22rem;margin-left: .04rem;font-size: .26rem;color: rgb(92,92,92);}
+		.time {margin-top: .22rem;margin-left: .04rem;font-size: .26rem;color: rgb(92,92,92);}
+		.foot {position: fixed;bottom: 0;height: .92rem;width: 100%;font-size: 0;}
+		.footleft {display: block;width: 50%;height: .92rem;text-align: center;line-height: .92rem;font-size: .25rem;color: white;float: left;background: rgb(235,137,67);font-size: .25rem;}
+		.footright {display: block;width: 50%;height: .92rem;text-align: center;line-height: .92rem;font-size: .25rem;color: white;float: right;background: rgb(241,70,47);}
+		.foot1 {display: none;}
+		.foot1 .footleft{float: left;background: rgb(241,70,47);width: 50%;height: 100%;}
+		.foot1 .footright{float: right;background: rgb(235,137,67);}
+		.leftleft{display: block;float: left;width: 26%;height: .92rem;box-sizing: border-box;padding-top: .25rem;color: white;background-image: url(../imgs/whiteheart.png);background-size: .44rem .42rem;background-repeat: no-repeat;background-position: .27rem .11rem;font-size: .22rem;text-align: center;}
+		.leftleft:after{content: '';width: .02rem;height: .92rem;position: absolute;background: white;top: 0;left: .96rem;}
+		.leftright {float: right;width: 67%;font-size: .25rem;}
+		.tanchu {width: 1.65rem;height: 2.22rem;background-image: url(../imgs/tanchubg.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;z-index: 400;top: .7rem;right: .22rem;box-sizing: border-box;font-size: 0;display: none;}
+		.tanchu a {display: block;width: 100%;height: .44rem;color: #fff;font-size: .28rem;line-height: .44rem;text-align: center;-webkit-border-image: url(../imgs/line.png) 0 0 1 0 stretch;border-bottom: 1px solid;}
+		.tanchus{display: block;}
+		.tanchu a:nth-child(1){margin-top: .51rem;}
+		.swiper-container1{overflow: hidden;height: 11.45rem;z-index: 1;}
+		.all{display: block;width: 2.01rem;height: .45rem;box-sizing: border-box;border: 1px solid #a9a9a9;font-size: .26rem;line-height: .45rem;text-align: center;margin: .23rem auto;border-radius: .06rem;color:#6f6f6f; }
+	</style>
+</head>
+<body>
+	<div class="head">
+		<a href="javascript:void(0);" class="to03"></a>
+		<span class="tittle">湾仔小精排</span>
+		<a href="javascript:void(0);" class="more">
+			<span></span>
+			<span></span>
+			<span></span>
+		</a>
+	</div>
+	<div class="headmark"></div>
+	<div class="tanchu">
+		<a href="javascript:void(0);">帮助</a>
+		<a href="javascript:void(0);">首页</a>
+		<a href="javascript:void(0);">客服消息</a>
+	</div>
+	<div class="contain">
+		<div class="swiper-container1">
+			<div class="swiper-wrapper">
+				<div class="swiper-slide">
+					<div class="jieshao">
+						<div class="swiper-container">
+							<div class="swiper-wrapper">
+								<div class="swiper-slide"><img src="../imgs/steaf.png" alt=""></div>
+								<div class="swiper-slide"><img src="../imgs/steaf.png" alt=""></div>
+								<div class="swiper-slide"><img src="../imgs/steaf.png" alt=""></div>
+								<div class="swiper-slide"><img src="../imgs/steaf.png" alt=""></div>
+							</div>
+							<div class="swiper-pagination"></div>
+						</div>
+						<div class="jieshaodown">
+							<div class="name"><span>湾仔码头精选1000g超级小精排</span></div>
+							<div class="pingjia"><span>米其林三星专供</span></div>
+							<div class="price"><span>￥ 120</span></div>
+							<div class="share">
+								<a href="javascript:void(0);" class="shoucang">收藏</a>
+								<a href="javascript:void(0);">分享</a>
+							</div>
+							<div class="xiaoliang"><span>周销</span><span>120</span><span>份</span></div>
+						</div>
+					</div>
+					<div class="guige">
+						<span>规格：1000g</span>
+						<p>因该产品加工时鲜肉精分割后抽真空包装在进行急速冷 冻的，所以包装内会出现少量的血冰，为正常现象，不会影 响商品的品质及口感。</p>
+					</div>
+					<div class="trans">16:00前付款，预计3月23日送达</div>
+					<div class="pay"><span>信用卡支付</span><span>微信支付</span><span>当天无理由</span></div>
+					<div class="tuodong">拖动查看商品详情<i></i></div>
+				</div>
+				<div class="swiper-slide">
+					<div class="dian">
+						<a href="javascript:void(0);">商品详情</a>
+						<a href="javascript:void(0);">宝贝评价</a>
+					</div>
+					<div class="goods content">
+						<div class="inner"><img src="../imgs/goods1.png" alt=""></div>
+						<div class="inner"><img src="../imgs/goods1.png" alt=""></div>
+					</div>
+					<div class="babypingjia content">
+						<ul>
+							<li><span>口感不错</span><span>(22)</span></li>
+							<li><span>物流超快</span><span>（10）</span></li>
+							<li><span>包装很好</span><span>（90）</span></li>
+							<li><span>价格实惠</span><span>（8）</span></li>
+							<li><span>小贵</span><span>（1）</span></li>
+						</ul>
+						<div class="users">
+							<div class="user">
+								<div class="touxiang"><img src="../imgs/touxiang1.png" alt=""></div>
+								<div class="username"><span>只若初见</span></div>
+							</div>
+							<p>这次买的没有上次送货快，希望改进。</p>
+							<div class="time"><span>2016</span>-<span>03</span>-<span>02</span></div>
+						</div>
+						<a href="javascript:void(0);" class="all">查看全部评价</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="foot">
+		<a href="javascript:void(0);" class="footleft">加入购物车</a>
+		<a href="javascript:void(0);" class="footright">立即购买</a>
+	</div>
+	<div class="foot foot1">
+		<div class="footleft">
+			<a href="javascript:void(0);" class="leftleft">收藏</a>
+			<div class="leftright"><span>合计： ￥</span><span>120</span></div>
+		</div>
+		<a href="javascript:void(0);" class="footright">加入购物车</a>
+	</div>
+
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script src='../js/swiper.min.js'></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;t||(t=540),n>t&&(n=t);var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"}
+		var o,i,d,s=document,a=window,l=s.documentElement;
+		n(),
+		a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+		a.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(o),o=setTimeout(n,300))},!1),"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){s.body.style.fontSize="100px"},!1)}(750,1296);
+// 几星好评
+var mySwiper = new Swiper('.swiper-container',{
+	resistanceRatio:0,
+	pagination: '.swiper-pagination',
+})
+var mySwiper = new Swiper('.swiper-container1',{
+	direction: 'vertical',
+	resistanceRatio:0,
+	pagination: '.swiper-pagination',
+})
+$('.heart').parent().click(function(){	
+	if ($(this).children().css('backgroundPosition')=='0px 0px') {
+		$(this).add($(this).prevAll()).children().css({
+			backgroundPosition:'100% 0',
+	    });
+	}
+	else{$(this).add($(this).nextAll()).children().css({
+			backgroundPosition:'0 0',
+		})}
+		
+	
+})
+// 收藏
+$('.shoucang').eq(0).click(function(){
+	$(this).toggleClass('green');
+
+})
+// 
+$('.to03').click(function(){
+	history.back();
+})
+// 商品详情和评价转换
+$('.dian a').click(function(){
+	$('.content').hide();
+	var index = $(this).index('.dian a');
+	$('.dian a').css('background','rgb(230,229,221)');
+	$(this).css('background','rgb(214,195,162)');
+	$('.content').eq(index).show();
+})
+// 评论时间
+var oDate = new Date();
+var oyear = oDate.getFullYear();
+var omounth = oDate.getMonth()<10?'0'+(oDate.getMonth()+1):oDate.getMonth()+1;
+var oday = oDate.getDate()<10?'0'+oDate.getDate():oDate.getDate();
+
+$('.time span').eq(0).text(oyear);
+$('.time span').eq(1).text(omounth);
+$('.time span').eq(2).text(oday);
+// 立即购买
+$('.foot .footright').click(function(){
+	$('.foot').hide();
+	$('.foot1').show();
+})
+$('.more').click(function(){
+	$('.tanchu').toggleClass('tanchus');
+})
+$('.tanchu a').click(function(){
+	$('.tanchu').toggleClass('tanchus');
+})
+</script>
+</html>

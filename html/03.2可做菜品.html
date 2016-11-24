@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>0302菜品详情</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<style>
+		html { color: #000; background: #fff; overflow-y: scroll; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; } html * { outline:none; -webkit-text-size-adjust: none; -webkit-tap-highlight-color:rgba(0,0,0,0); } html, body { font-family: sans-serif; } /* 内外边距通常让各个浏览器样式的表现位置不同 */ body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend, input, textarea, p, blockquote, th, td, hr, button, article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section { margin: 0; padding: 0; } input, select, textarea { font-size: 100%; } /* 去掉各 Table cell 的边距并让其边重合 */ table { border-collapse: collapse; border-spacing: 0; } /* 去除默认边框 */ fieldset, img { border: 0; } /* 去掉 firefox 下此元素的边框 */ abbr, acronym { border: 0; font-variant: normal; } /* 一致的 del 样式 */ del { text-decoration: line-through; } address, caption, cite, code, dfn, em, th, var { font-style: normal; font-weight: 500; } /* 去掉列表前的标识, li 会继承 */ ol, ul { list-style: none; } /* 对齐是排版最重要的因素, 别让什么都居中 */ caption, th { text-align: left; } /* 来自 yahoo, 让标题都自定义, 适应多个系统应用 */ h1, h2, h3, h4, h5, h6 { font-size: 100%; font-weight: 500; } q:before, q:after { content: ''; } /* 统一上标和下标 */ sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline; } sup { top: -0.5em; } sub { bottom: -0.25em; } /* 正常链接 未访问 */ a:link { } /* 鼠标悬停 */ /* 默认不显示下划线，保持页面简洁 */ ins, a { text-decoration: none; }
+		html{font-size: 100px;}
+		.head {width:7.5rem;height: .9rem;background-image: url(../imgs/031headbg.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;top: 0;left: 0;}
+		.to03 {display: block;position: absolute;top: .27rem;left: .3rem;background-image: url(../imgs/to03.png);background-size: 100% 100%;background-repeat: no-repeat;width: .21rem;height: .39rem;}
+		.kezuo {width: 1.35rem;height: .31rem;display: block;position: absolute;top: .3rem;left: 3.09rem;color: white;font-size: .33rem;line-height: .31rem;}
+		.headmark {width:7.5rem;height: .83rem;}
+		.contain {width: 100%;/*background: rgb(230,229,221);*/}
+		.headpic {width: 100%;height: 4rem;}
+		.headpic img {width: 100%;height: 100%;}
+		.jieshao {width: 100%;height: 1.83rem;padding-left: .33rem;padding-right: .3rem;box-sizing: border-box;border: 1px solid white;}
+		.name {float: left;margin-top: .31rem;}
+		.namespan {display: block;font-size: .3rem;color: rgb(31,31,31);}
+		.kouwei {margin-top: 1.03rem;}
+		.kouwei span {display: block;font-size: .24rem;color: rgb(193,193,193);margin-right: .3rem;float: left;} 
+		.pingjia {float: right;margin-top: .33rem;}
+		.pingjia li {float: left;margin-right: .07rem;}
+		.pingjia span {display: block;width: .35rem;height: .32rem;background-image: url(../imgs/heartgreen.png);background-size: 200% 100%;background-position: 0 0;}
+		.nums {float: right;/*margin-top: 1.06rem;*/}
+		.nums span {display: block;float: left;font-size: .22rem;color: rgb(193,193,193);}
+		.caidan {width: 100%;height: 3.18rem;}
+		.caidantop {width: 1.59rem;height: .44rem;background-image: url(../imgs/caidan.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.swiper-container {height: 2.44rem;background: rgb(230,229,221);margin-top: .3rem;}
+		.swiper-slide img {width: 2.3rem;height: 2rem;margin-top: .22rem;margin-left: .3rem;}	
+		.gonglue{width: 100%;}
+		.gongluehead {width: 1.6rem;height: .43rem;margin-top: .3rem;margin-bottom: .3rem;}
+		.gongluehead img {width: 100%;height: 100%;float: left;}
+		.liaotitle {width: 100%;height: .56rem;border-top: 1px solid rgb(193,193,193);border-bottom:1px solid rgb(193,193,193);text-align: center;line-height: .56rem;font-size: .22rem; color: rgb(193,193,193);}
+		.liaojuti {width: 7.5rem;height: .78rem;}
+		.liaojuti1 {float: left;width: 3.75rem;height: .78rem;line-height: .78rem;text-align: center;color: rgb(193,193,193);font-size: .18rem;box-sizing: border-box;}
+		.liaojuti2 {border-right: 1px solid rgb(193,193,193);}
+		.liaojuti3 {border-bottom: 1px solid rgb(193,193,193)}
+		.liaoboxmark {height: .38rem;width: 100%;clear: both;}
+		.step {width: 100%;height: 3.4rem;box-sizing: border-box;padding-left: .3rem;padding-right: .44rem;clear: both;margin-bottom: .22rem;}
+		.stepleft {float: left;width: 4.8rem;height: 3.4rem;}
+		.stepleft img {width: 100%;height: 100%;}
+		.stepright {width: 1.6rem;height: 3.4rem;float: right;line-height: .33rem;}
+		.stepright h1 {font-size: .22rem;color: rgb(21,21,21);}
+		.stepright p {font-size: .2rem;color: rgb(193,193,193);}
+		.foot {position: fixed;bottom: 0;height: .92rem;width: 100%;}
+		.foot a {display: block;width: 50%;height: .92rem;text-align: center;line-height: .92rem;font-size: .25rem;color: white;}
+		.footleft {float: left;background: rgb(235,137,67);}
+		.footright {float: right;background: rgb(241,70,47);}
+	</style>
+</head>
+<body>
+	<div class="head">
+		<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/031%E5%8F%AF%E9%80%89%E8%8F%9C%E5%93%81.html" class="to03"></a>
+		<span class="kezuo">菜品详情</span>
+	</div>
+	<div class="headmark"></div>
+	<div class="contain">
+		<div class="headpic"><img src="../imgs/xingbaogu.png" alt=""></div>
+		<div class="jieshao">
+			<div class="name"><span class="namespan">香煎杏鲍菇</span></div>
+			<ul class="pingjia">
+				<li><span class="heart"></span></li>
+				<li><span class="heart"></span></li>
+				<li><span class="heart"></span></li>
+				<li><span class="heart"></span></li>
+			</ul>
+			<div class="kouwei"><span>酱香口味</span><span>5分钟</span></div>
+			<div class="nums"><span class="count">0</span><span>人浏览</span></div>
+		</div>
+		<div class="caidan">
+			<div class="caidantop"></div>
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img src="../imgs/xin.png" alt=""></div>
+					<div class="swiper-slide"><img src="../imgs/cong.png" alt=""></div>
+					<div class="swiper-slide"><img src="../imgs/oil.png" alt=""></div>
+					<div class="swiper-slide"><img src="../imgs/xin.png" alt=""></div>
+					<div class="swiper-slide"><img src="../imgs/cong.png" alt=""></div>
+					<div class="swiper-slide"><img src="../imgs/oil.png" alt=""></div>
+				</div>
+			</div>
+		</div>
+		<div class="gonglue">
+			<div class="gongluehead"><img src="../imgs/gonglue.png" alt=""></div>
+			<div class="yongliao">
+				<div class="liaobox">
+					<div class="liaotitle">主料</div>
+					<div class="liaojuti">
+					<div class="liaojuti1 liaojuti2">杏鲍菇 （2个）</div>
+					<div class="liaojuti1">wo</div>
+					</div>
+					<div class="liaotitle">辅料</div>
+					<div class="liaojuti">
+					<div class="liaojuti1 liaojuti2 liaojuti3">鲜葱 （1颗）</div>
+					<div class="liaojuti1 liaojuti3">山椒酱 （45毫升）</div>
+					<div class="liaojuti1 liaojuti2 liaojuti3">玉米油 （2.5毫升）</div>
+					<div class="liaojuti1 liaojuti3"></div>
+				</div>
+				<div class="liaoboxmark"></div>
+				<div class="step">
+					<div class="stepleft"><img src="../imgs/xi.png" alt=""></div>
+					<div class="stepright">
+						<h1>步骤一</h1>
+						<p>杏鲍菇洗净，拧干水分，切片；尽量厚薄均匀；再切点葱花；</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="stepleft"><img src="../imgs/shu.png" alt=""></div>
+					<div class="stepright">
+						<h1>步骤二</h1>
+						<p>电饼铛上下两个煎盘都刷上一层玉米油；</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="stepleft"><img src="../imgs/dian.png" alt=""></div>
+					<div class="stepright">
+						<h1>步骤三</h1>
+						<p>通电，打开上下两个开关，预热；</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="stepleft"><img src="../imgs/pu.png" alt=""></div>
+					<div class="stepright">
+						<h1>步骤四</h1>
+						<p>预热完成后，将杏鲍菇片铺在电饼铛里；启动“大饼/馅饼”功能；</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="stepleft"><img src="../imgs/fan.png" alt=""></div>
+					<div class="stepright">
+						<h1>步骤五</h1>
+						<p>一个程序完成后，将杏鲍菇翻面；启动“煎蛋/薄饼”功能；</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="stepleft"><img src="../imgs/chao.png" alt=""></div>
+					<div class="stepright">
+						<h1>步骤六</h1>
+						<p>程序完成后，关掉上开关；调入适量山椒酱；将酱料同杏鲍菇炒均匀；</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="stepleft"><img src="../imgs/sa.png" alt=""></div>
+					<div class="stepright">
+						<h1>步骤七</h1>
+						<p>食材都煎熟之后，撒入葱花；</p>
+					</div>
+				</div>
+				<div class="step">
+					<div class="stepleft"><img src="../imgs/zhuo.png" alt=""></div>
+					<div class="stepright">
+						<h1>步骤八</h1>
+						<p>装盘，上桌咯。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="foot">
+		<a href="#" class="footleft">加入购物车</a>
+		<a href="#" class="footright">立即购买</a>
+	</div>
+</body>
+<script src="../jq/jquery.min.js"></script>
+<script src='../js/swiper.min.js'></script>
+<script>
+!function(e,t){
+	function n(){
+		var n=l.getBoundingClientRect().width;t||(t=540),n>t&&(n=t);var o=100*n/e;
+		if(d="html{font-size:"+o+"px !important}",i=document.getElementById("rootsize")||document.createElement("style"),document.getElementById("rootsize")||(document.getElementsByTagName("head")[0].appendChild(i),i.id="rootsize"),i.styleSheet)i.styleSheet.disabled||(i.styleSheet.cssText=d);
+		else try{i.innerHTML=d}
+			catch(s){i.innerText=d}l.style.fontSize=o+"px"}
+		var o,i,d,s=document,a=window,l=s.documentElement;
+		n(),
+		a.addEventListener("resize",function(){clearTimeout(o),o=setTimeout(n,300)},!1),
+		a.addEventListener("pageshow",function(e){e.persisted&&(clearTimeout(o),o=setTimeout(n,300))},!1),"complete"===s.readyState?s.body.style.fontSize="100px":s.addEventListener("DOMContentLoaded",function(e){s.body.style.fontSize="100px"},!1)}(750,1296);
+// 几星好评
+var mySwiper = new Swiper('.swiper-container',{
+	slidesPerView: 2.7,
+	resistanceRatio:0,
+})
+$('.heart').parent().click(function(){	
+	if ($(this).children().css('backgroundPosition')=='0px 0px') {
+		$(this).add($(this).prevAll()).children().css({
+			backgroundPosition:'100% 0',
+	    });
+	}
+	else{$(this).add($(this).nextAll()).children().css({
+			backgroundPosition:'0 0',
+		})}
+		
+	
+})
+// 存储浏览人数
+var count = document.querySelectorAll('.count')[0];
+console.log(count)
+var index = 0;
+window.onload=function(){
+	// localStorage.removeItem("renshu");
+	if(localStorage.getItem("renshu")){
+		count.innerHTML = localStorage.getItem("renshu");
+	}
+	index++;
+	console.log(count.innerHTML)
+	count.innerHTML=index+parseInt(count.innerHTML);
+	console.log()
+	localStorage.setItem("renshu",count.innerHTML);
+}
+</script>
+</html>

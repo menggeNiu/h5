@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>shopping</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+	<link rel="stylesheet" href="../css/swiper.min.css">
+	<style>
+		body{margin: 0;padding: 0;font-size: 100%;}
+		.contain {width: 100%;background: rgb(230,229,221);}
+		.head {width: 750px;height:82px;background: url(../imgs/nav1.png);background-size: 100% 100%;background-repeat: no-repeat;position: fixed;top:0;left: 0;z-index: 10;}
+		.headmark {width: 750px;height: 82px;}
+		.position1 {display: block;width: 92px;height: 31px;position: absolute;top: 23px;left: 32px;}
+		.search {position:absolute;width: 360px;height: 35px;background: transparent;color: rgb(134,117,88);border: none;outline: 0;top: 20px;left: 236px;}
+		.search::-webkit-input-placeholder {color: rgb(134,117,88);}
+		.message1 {display:block;width: 33px;height: 44px;background: url(../imgs/message.png);background-size: 100% 100%;background-repeat: no-repeat;position: absolute;top: 19px;left: 684px;}
+		.swiper-pagination-bullet {background: rgb(207,207,207);opacity: 1;}
+		.swiper-pagination-bullet-active {background: #fff;}
+		.lunbo11 {width: 750px;height: 350px;}
+		.inner {width: 750px;height: 388px;background: #fff;position: relative;}
+		.killsale {top: 19px;}
+		.mian {width: 75px;height: 25px;position: absolute;top: 31px;left: 31px;}
+		.salecontent {width: 336px;height: 295px;position: absolute;}
+		.salecontent1 {top: 76px;left: 30px;}
+		.salecontent2 {top: 76px;left: 384px;}
+		.salebox {display:block;width: 336px;height: 200px;position: absolute;top: 95px;}
+		.scalepic {width: 100%;height: 100%;}
+		.text {width: 249px;height: 23px;position:absolute;left: 0;top:0; }
+		.money {width: 83px;height: 25px;position: absolute;top: 50px;left: 255px;}
+		.daojisih {width: 149px;height: 44px;position: absolute;top: 41px;left: 0;}
+		.diandian {width: 5px;height: 13px;position: absolute;top: 16px;}
+		.dian1 {left: 45px; }
+		.dian2 {left: 108px; }
+		.daojisih span {position: absolute;width: 40px;height: 44px;background: url(../imgs/spanbg.png);background-size: 100% 100%;background-repeat: no-repeat;color: white;font-size: 100%;font-size: 35px;}
+		.dspan2 {left: 54px;}
+		.dspan3 {left: 108px;}
+		.dspan5 {left: 54px;}
+		.dspan6 {left: 108px;}
+		.jingxuan {height:374px;top: 38px;}
+		.jingxuan a {display: block;}
+		.xuancai {width: 102px;height: 25px;position: absolute;top: 30px;left: 31px;}
+		.more {position: absolute;width: 94px;height: 23px;top: 31px;left: 626px;font-size: 0;}
+		.jingxuan a img {width: 100%;height: 100%;}
+		.caibox {width: 750px;height: 300px;position: absolute;left: 0;top: 74px;}
+		.caibox a {float: left;}
+		.caiproduce1 {width: 290px;height: 300px;}
+		.caiproduce2 {width: 460px;height: 150px;}
+		.caiproduce3 {width: 230px;height: 150px;}
+		.caiproduce4 {width: 230px;height: 150px;}
+		.footer {position: fixed;width: 100%;height: 7.496%;background: url(../imgs/foot.png);background-size: 100% 100%;background-repeat: no-repeat;}
+		.footbox {width: 20%;height: 100%;float: left;position: relative;}
+		.footbox a {display: block;position: absolute;}
+		.footpic1 {width: 40px;height: 65px;top: 18px;left: 55px;background: url(../imgs/homepage.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 102%;}
+		.footpic2 {width: 42px;height: 64px;top: 19px;left: 55px;background: url(../imgs/shangcheng.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic3 {width: 48px;height: 64px;top: 19px;left: 52px;background: url(../imgs/xuan.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic4 {width: 50px;height: 64px;top: 19px;left: 51px;background: url(../imgs/find.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.footpic5 {width: 38px;height: 65px;top: 19px;left: 56px;background: url(../imgs/mine.png);background-size: 100% 200%;background-repeat: no-repeat;background-position: 0 0;}
+		.shoppingcar {width: 100px;height: 100px;position: fixed;display: block;top: 942px;left: 644px;background: url(../imgs/shoppingcar.png);background-size: 100% 100%;background-repeat: no-repeat;z-index: 200;}
+		.shanping{position: absolute;width: 100%;z-index: 200;top: 0;left: 0;background-image: url(../imgs/shanping.png);background-size: 100% 100%;background-repeat: no-repeat;}
+	</style>
+</head>
+<body>
+	<div class="resize head">
+		<img src="../imgs/position1.png" alt="" class="resize position1"/>
+		<input type="text" class="resize search" placeholder="搜索食材、菜品">
+		<a href="javacript:void(0);" class="resize message1"></a>
+	</div>
+	<div class="contain">
+		<div class="resize headmark"></div>
+		<div class="swiper-container">
+	        <div class="swiper-wrapper">
+	            <div class="swiper-slide"><img src="../imgs/lunbo1.png" alt="" class="resize lunbo11"></div>
+	            <div class="swiper-slide"><img src="../imgs/lunbo1.png" alt="" class="resize lunbo11"></div>
+	            <div class="swiper-slide"><img src="../imgs/lunbo1.png" alt="" class="resize lunbo11"></div>
+	        </div>
+	        <div class="swiper-pagination"></div>
+	    </div>
+	    <div class="resize killsale inner">
+	    	<img src="../imgs/mian.png" alt="" class="resize mian">
+	    	<div class="resize salecontent salecontent1">
+	    		<a class="resize salebox">
+	    			<img src="../imgs/huluobo.png" alt="" class="scalepic">
+	    		</a>
+	    		<img src="../imgs/botext.png" alt="" class="resize text">
+	    		<img src="../imgs/bomoney.png" alt="" class="resize money">
+	    		<div class="resize daojisih">
+	    			<span class="resize dspan1">01</span>
+	    			<img src="../imgs/dian.png" alt="" class="diandian resize dian1">
+	    			<span class="resize dspan2">33</span>
+	    			<img src="../imgs/dian.png" alt="" class="diandian resize dian2">
+	    			<span class="resize dspan3">19</span>
+	    		</div>
+	    	</div>
+	    	<div class="resize salecontent salecontent2">
+	    		<a class="resize salebox">
+	    			<img src="../imgs/huanggua.png" alt="" class="scalepic">
+	    		</a>
+	    		<img src="../imgs/guatext.png" alt="" class="resize text">
+	    		<img src="../imgs/guamoney.png" alt="" class="resize money">
+	    		<div class="resize daojisih">
+	    			<span class="resize dspan4">01</span>
+	    			<img src="../imgs/dian.png" alt="" class="diandian resize dian1">
+	    			<span class="resize dspan5">56</span>
+	    			<img src="../imgs/dian.png" alt="" class="diandian resize dian2">
+	    			<span class="resize dspan6">39</span>
+	    		</div>
+	    	</div>
+	    </div>
+	    <div class="resize inner jingxuan">
+	    	<img src="../imgs/xuancai.png" alt="" class="resize xuancai">
+	    	<a href="#" class="resize more"><img src="../imgs/more.png" alt=""></a>
+	    	<div class="resize caibox">
+	    		<a href="#" class="resize caiproduce caiproduce1"><img src="../imgs/cow.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce2"><img src="../imgs/yingtao.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce3"><img src="../imgs/baicai.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce4"><img src="../imgs/zhishi.png" alt=""></a>
+	    	</div>
+	    </div> 
+	    <div class="resize inner jingxuan">
+	    	<img src="../imgs/xuancai.png" alt="" class="resize xuancai">
+	    	<a href="#" class="resize more"><img src="../imgs/more.png" alt=""></a>
+	    	<div class="resize caibox">
+	    		<a href="#" class="resize caiproduce caiproduce1"><img src="../imgs/cow.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce2"><img src="../imgs/yingtao.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce3"><img src="../imgs/baicai.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce4"><img src="../imgs/zhishi.png" alt=""></a>
+	    	</div>
+	    </div> 
+	    <div class="resize inner jingxuan">
+	    	<img src="../imgs/xuancai.png" alt="" class="resize xuancai">
+	    	<a href="#" class="resize more"><img src="../imgs/more.png" alt=""></a>
+	    	<div class="resize caibox">
+	    		<a href="#" class="resize caiproduce caiproduce1"><img src="../imgs/cow.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce2"><img src="../imgs/yingtao.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce3"><img src="../imgs/baicai.png" alt=""></a>
+		    	<a href="#" class="resize caiproduce caiproduce4"><img src="../imgs/zhishi.png" alt=""></a>
+	    	</div>
+	    </div> 
+	</div>
+	<div class="footer">
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/01%E4%B8%BB%E9%A1%B5.html#" class="resize footpic footpic1"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/02%E8%8F%9C%E5%93%81.html#" class="resize footpic footpic2"></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/03%E9%80%89%E8%8F%9C.html" class="resize footpic footpic3"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/04find.html" class="resize footpic footpic4"><img src="" alt=""></a>
+		</div>
+		<div class="footbox">
+			<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/05%E4%B8%AA%E4%BA%BA%E7%99%BB%E9%99%86%E4%B8%AD%E5%BF%83.html" class="resize footpic footpic5"><img src="" alt=""></a>
+		</div>
+	</div>
+	<a href="file:///Users/lanou/Desktop/HTML%E7%89%9B/homework/0825%E6%89%8B%E6%9C%BA%E7%AB%AF(%E5%AE%8C%E6%95%B4%E9%A1%B9%E7%9B%AE)---%E7%B1%BB%E4%BC%BC%E8%B4%AD%E7%89%A9/html/%E8%B4%AD%E7%89%A9%E8%BD%A6.html" class="resize shoppingcar"></a>
+	<div class="shanping"></div>
+</body>
+<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+<script src='../js/swiper.min.js'></script>
+<script src='../js/touch.js'></script>
+<script>
+$('.shanping').height(window.innerHeight);
+var swiper = new Swiper('.swiper-container', {
+	pagination: '.swiper-pagination',
+	resistanceRatio:0,
+	loop:true,
+	autoplay:3000,
+});
+var shanping = document.querySelectorAll('.shanping')[0];
+setTimeout(function(){
+	shanping.style.display='none';
+},1000)
+//重置各个需要重置长宽 left top值
+var scaleW = window.innerWidth/750;// 移动端用innerWidth
+var scaleH = window.innerHeight/1294;
+$('.footer').css({
+	top:window.innerHeight-$('.footer').height(),
+})
+resizes = document.querySelectorAll('.resize');
+for(var i = 0;i<resizes.length;i++){
+	resizes[i].style.width = parseInt(getStyle(resizes[i],'width'))*scaleW+'px';
+	resizes[i].style.left = parseInt(getStyle(resizes[i],'left'))*scaleW+'px';
+	resizes[i].style.height = parseInt(getStyle(resizes[i],'height'))*scaleW+'px';
+	resizes[i].style.top = parseInt(getStyle(resizes[i],'top'))*scaleW+'px';
+	resizes[i].style.fontSize = parseInt(getStyle(resizes[i],'font-size'))*scaleW+'px';
+
+}
+function getStyle(obj,attr){
+    var ie = !+"\v1";//简单判断ie6~8
+ 	if(attr=="backgroundPosition"){//IE6~8不兼容backgroundPosition写法，识别backgroundPositionX/Y
+  		if(ie){        
+   			return obj.currentStyle.backgroundPositionX +" "+obj.currentStyle.backgroundPositionY;
+    	}
+ 	}
+ 	if(obj.currentStyle){
+  		return obj.currentStyle[attr];
+ 	}
+ 	else{
+  		return document.defaultView.getComputedStyle(obj,null)[attr];
+ 	}
+}
+
+// 倒计时
+var a =5600000;
+var b =7000000
+var seckilltimer1 = null;
+var seckilltimer2 = null;
+seckilltimer1 = setInterval(function(){
+	a = a-1000;
+	if (a<=0) {
+		a = 5600000;}
+	var hours=Math.floor(a/1000/60/60);
+	var minutes=Math.floor(a/1000/60%60);
+	var seconds=Math.floor(a/1000%60);
+	$('.dspan1').text(bl(hours));
+	$('.dspan2').text(bl(minutes));
+	$('.dspan3').text(bl(seconds));
+},1000);
+seckilltimer2 = setInterval(function(){
+	b = b-1000;
+	if (b<=0) {
+		b =7000000;}
+	var hours=Math.floor(b/1000/60/60);
+	var minutes=Math.floor(b/1000/60%60);
+	var seconds=Math.floor(b/1000%60);
+	$('.dspan4').text(bl(hours));
+	$('.dspan5').text(bl(minutes));
+	$('.dspan6').text(bl(seconds));
+},1000);
+function bl(n){
+	    	return n<10?'0'+n:n;
+}
+// 搜索框的设置
+$('input.search').focus(function(){
+	$(this).removeAttr('placeholder');
+})
+$('input.search').blur(function(){
+	$(this).attr('placeholder',"搜索食材、菜品");
+})
+// foot图标的变化
+$('.footpic').click(function(){
+	$('.footpic').css({
+		backgroundPosition:'0 -1%',
+	})
+	$(this).css({
+		backgroundPosition:'0 100%',
+	})
+})
+// // 购物车
+var shoppingcar = document.querySelectorAll('.shoppingcar')[0];
+shoppingcar.addEventListener('touchmove',function(e){
+	var ev = e||window.event;
+	ev.preventDefault();//阻止触屏滑动
+	var nowy = ev.touches[0].clientY-shoppingcar.offsetHeight/2;
+	if (nowy<=82*scaleW) {
+		nowy = 82*scaleW;
+	}
+	if (nowy>=$('.footer').position().top-$('.shoppingcar').height()) {
+		nowy =$('.footer').position().top-$('.shoppingcar').height();
+	}
+	shoppingcar.style.top =nowy +'px';
+},false)
+
+</script>
+</html>
